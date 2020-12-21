@@ -1,2 +1,3 @@
+include ':splash-feature'
 include ':app'
 rootProject.name = "MyTickTock"
