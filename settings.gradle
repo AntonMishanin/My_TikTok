@@ -1,3 +1,4 @@
+include ':profile-feature'
 include ':settings-feature'
 include ':authorization-feature'
 include ':splash-feature'
