@@ -13,7 +13,7 @@ android {
         targetSdkVersion 30
         versionCode 1
         versionName "1.0"
-
+        multiDexEnabled true
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
 
@@ -34,12 +34,36 @@ android {
 
 dependencies {
 
+    implementation project(':authorization-feature')
+    implementation project(':news-feed-feature')
+    implementation project(':profile-feature')
+    implementation project(':settings-feature')
+    implementation project(':splash-feature')
+    implementation project(':video-feature')
+
+    //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
+
+    //AndroidX
     implementation 'androidx.core:core-ktx:1.3.2'
     implementation 'androidx.appcompat:appcompat:1.2.0'
+
+    //Material
     implementation 'com.google.android.material:material:1.2.1'
+
+    //Constraint layout
     implementation 'androidx.constraintlayout:constraintlayout:2.0.4'
+
+    //Test
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
+
+    //Navigation component
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.3.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.3.2'
+    implementation 'androidx.lifecycle:lifecycle-extensions:2.2.0'
+
+    //MultiDex
+    implementation 'androidx.multidex:multidex:2.0.1'
 }
