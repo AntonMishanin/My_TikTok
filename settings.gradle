@@ -1,3 +1,4 @@
+include ':authorization-feature'
 include ':splash-feature'
 include ':app'
 rootProject.name = "MyTickTock"
