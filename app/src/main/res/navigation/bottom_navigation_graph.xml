@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_graph"
-    app:startDestination="@id/profileFragment">
+    app:startDestination="@id/splashFragment">
 
     <fragment
         android:id="@+id/profileFragment"
@@ -15,4 +15,16 @@
         android:id="@+id/recordVideoFragment"
         android:name="com.example.video_feature.RecordVideoFragment"
         android:label="RecordVideoFragment" />
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.splash_feature.SplashFragment"
+        android:label="SplashFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.authorization_feature.login.LoginFragment"
+        android:label="LoginFragment" />
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.authorization_feature.registration.RegistrationFragment"
+        android:label="RegistrationFragment" />
 </navigation>
