@@ -34,6 +34,8 @@ android {
 
 dependencies {
 
+    implementation project(':data')
+
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
