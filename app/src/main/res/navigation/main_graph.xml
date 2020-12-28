@@ -4,18 +4,6 @@
     app:startDestination="@id/splashFragment">
 
     <fragment
-        android:id="@+id/profileFragment"
-        android:name="com.example.profile_feature.ProfileFragment"
-        android:label="ProfileFragment" />
-    <fragment
-        android:id="@+id/newsFeedFragment"
-        android:name="com.example.news_feed_feature.NewsFeedFragment"
-        android:label="NewsFeedFragment" />
-    <fragment
-        android:id="@+id/recordVideoFragment"
-        android:name="com.example.video_feature.RecordVideoFragment"
-        android:label="RecordVideoFragment" />
-    <fragment
         android:id="@+id/splashFragment"
         android:name="com.example.splash_feature.SplashFragment"
         android:label="SplashFragment" />
@@ -27,4 +15,20 @@
         android:id="@+id/registrationFragment"
         android:name="com.example.authorization_feature.registration.RegistrationFragment"
         android:label="RegistrationFragment" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.bottom_navigation_feature.presentation.main.MainFragment"
+        android:label="MainFragment" />
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.settings_feature.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.edit_profile_feature.presentation.EditProfileFragment"
+        android:label="EditProfileFragment" />
+    <fragment
+        android:id="@+id/recordVideoFragment"
+        android:name="com.example.video_feature.RecordVideoFragment"
+        android:label="RecordVideoFragment" />
 </navigation>

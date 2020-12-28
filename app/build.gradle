@@ -35,8 +35,8 @@ android {
 dependencies {
 
     implementation project(':authorization-feature')
-    implementation project(':news-feed-feature')
-    implementation project(':profile-feature')
+    implementation project(':bottom-navigation-feature')
+    implementation project(':edit-profile-feature')
     implementation project(':settings-feature')
     implementation project(':splash-feature')
     implementation project(':video-feature')

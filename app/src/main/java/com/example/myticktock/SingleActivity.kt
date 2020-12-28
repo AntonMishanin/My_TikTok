@@ -6,21 +6,23 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.authorization_feature.AuthorizationNavigator
+import com.example.bottom_navigation_feature.presentation.navigator.BottomNavigator
+import com.example.edit_profile_feature.navigator.EditProfileNavigator
+import com.example.settings_feature.navigator.SettingsNavigator
 import com.example.splash_feature.SplashNavigator
+import com.example.video_feature.navigator.VideoNavigator
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
-class SingleActivity : AppCompatActivity(), SplashNavigator, AuthorizationNavigator {
+class SingleActivity : AppCompatActivity(), SplashNavigator, AuthorizationNavigator,
+    BottomNavigator, SettingsNavigator, VideoNavigator, EditProfileNavigator {
 
-    private lateinit var navView: BottomNavigationView
     private lateinit var navController: NavController
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_single)
 
-        navView = findViewById(R.id.nav_view)
         navController = findNavController(R.id.nav_host_fragment)
-        navView.setupWithNavController(navController)
     }
 
     /*
@@ -32,7 +34,7 @@ class SingleActivity : AppCompatActivity(), SplashNavigator, AuthorizationNaviga
     }
 
     override fun navigateToProfile() {
-        navController.navigate(R.id.profileFragment)
+        navController.navigate(R.id.mainFragment)
     }
 
     /*
@@ -44,5 +46,49 @@ class SingleActivity : AppCompatActivity(), SplashNavigator, AuthorizationNaviga
 
     override fun navigateToRegistration() {
         navController.navigate(R.id.registrationFragment)
+    }
+
+    /*
+    Bottom navigation
+     */
+
+    override fun onClickEditProfile() {
+        navController.navigate(R.id.editProfileFragment)
+    }
+
+    override fun onClickSettings() {
+        navController.navigate(R.id.settingsFragment)
+    }
+
+    override fun onClickVideo() {
+        navController.navigate(R.id.recordVideoFragment)
+    }
+
+    /*
+    Settings
+     */
+
+    override fun onClickBack() {
+        navController.popBackStack()
+    }
+
+    override fun onLogOut() {
+        navController.navigate(R.id.loginFragment)
+    }
+
+    /*
+    Video
+     */
+
+    override fun onClickBackFromVideo() {
+        navController.popBackStack()
+    }
+
+    /*
+    EditProfile
+     */
+
+    override fun onClickBackFromEditProfile() {
+        navController.popBackStack()
     }
 }
