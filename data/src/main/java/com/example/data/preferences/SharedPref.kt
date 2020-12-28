@@ -4,13 +4,13 @@ import android.content.SharedPreferences
 
 class SharedPref(private var sharedPreferences: SharedPreferences) {
 
-    fun setToken(token: Int) {
+    fun setToken(token: Long) {
         val editor = sharedPreferences.edit()
-        editor?.putInt("KEY_TOKEN", token)
+        editor?.putLong("KEY_TOKEN", token)
         editor?.apply()
     }
 
-    fun getToken(): Int {
-        return sharedPreferences.getInt("KEY_TOKEN", -1)
+    fun getToken(): Long {
+        return sharedPreferences.getLong("KEY_TOKEN", -1)
     }
 }
