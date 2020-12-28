@@ -8,4 +8,16 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Back" />
+
+    <EditText
+        android:id="@+id/editText_user_name_edit_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name" />
+
+    <Button
+        android:id="@+id/button_save_edit_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Button" />
 </LinearLayout>
