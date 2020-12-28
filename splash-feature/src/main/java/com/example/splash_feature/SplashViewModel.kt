@@ -3,7 +3,7 @@ package com.example.splash_feature
 import androidx.lifecycle.ViewModel
 import com.example.data.RepositoryImpl
 
-class SplashViewModel: ViewModel() {
+class SplashViewModel : ViewModel() {
 
     fun onViewCreated(
         repository: RepositoryImpl,
@@ -11,9 +11,9 @@ class SplashViewModel: ViewModel() {
     ) {
         val token = repository.getToken()
 
-        if(token==-1){
+        if (token == -1L) {
             navigator.navigateToAuthorization()
-        }else{
+        } else {
             navigator.navigateToProfile()
         }
     }
