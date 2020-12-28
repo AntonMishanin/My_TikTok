@@ -7,7 +7,7 @@ import androidx.navigation.NavController
 import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.bottom_navigation_feature.R
-import com.example.bottom_navigation_feature.presentation.navigator.BottomNavigator
+import com.example.bottom_navigation_feature.navigator.BottomNavigator
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainFragment : Fragment(R.layout.fragment_main) {
