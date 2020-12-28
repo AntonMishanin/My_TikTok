@@ -1,3 +1,5 @@
+include ':edit-profile-feature'
+include ':bottom-navigation-feature'
 include ':data'
 include ':news-feed-feature'
 include ':video-feature'
