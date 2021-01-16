@@ -1,6 +1,5 @@
 package com.example.data
 
-import androidx.room.*
 import com.example.data.database.UserDao
 import com.example.data.preferences.SharedPref
 import com.example.domain.entity.UserEntity
@@ -9,9 +8,7 @@ import io.reactivex.Flowable
 import io.reactivex.Single
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableCompletableObserver
-import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
-import java.util.concurrent.Callable
 
 class RepositoryImpl(
     private val sharedPref: SharedPref,
@@ -33,51 +30,29 @@ class RepositoryImpl(
     Database
      */
 
-    fun insertUser(user: UserEntity, onComplete: (Long) -> Unit) {
-        val fd = Single.fromCallable { userDao.insertUser(user) }.subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object : DisposableSingleObserver<Long>() {
-                override fun onSuccess(t: Long) {
-                    onComplete(t)
-                }
+    fun insertUser(user: UserEntity): Single<Long> =
+        Single.fromCallable { userDao.insertUser(user) }
 
-                override fun onError(e: Throwable) {
-                }
-            })
-    }
-
-    fun updateUser(user: UserEntity) {
-        Completable.fromAction {
-            userDao.updateUser(user)
-        }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : DisposableCompletableObserver() {
-                override fun onComplete() {
-                    // Log.d("TAG", "insert onComplete()")
-                }
-
-                override fun onError(e: Throwable) {
-                    //Log.d("TAG", "insert onError ${e.message}")
-                }
-            })
-    }
+    fun updateUser(user: UserEntity): Completable =
+        Completable.fromAction { userDao.updateUser(user) }
 
     fun deleteUser(user: UserEntity) {
-        Completable.fromAction {
+        val f = Completable.fromAction {
             userDao.deleteUser(user)
         }
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe(object : DisposableCompletableObserver() {
-                override fun onComplete() {
-                    // Log.d("TAG", "insert onComplete()")
-                }
+            .subscribe {
+                (object : DisposableCompletableObserver() {
+                    override fun onComplete() {
+                        // Log.d("TAG", "insert onComplete()")
+                    }
 
-                override fun onError(e: Throwable) {
-                    //Log.d("TAG", "insert onError ${e.message}")
-                }
-            })
+                    override fun onError(e: Throwable) {
+                        //Log.d("TAG", "insert onError ${e.message}")
+                    }
+                })
+            }
     }
 
     fun getAllUsers() {
@@ -88,19 +63,7 @@ class RepositoryImpl(
             }
     }
 
-    fun getUserById(id: Int, onComplete: (UserEntity) -> Unit) {
-        val subscribe = userDao.getUserById(id)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                onComplete(it)
-            }
-    }
+    fun getUserById(id: Int): Flowable<UserEntity> = userDao.getUserById(id)
 
-    fun getUserByName(userName: String, onComplete: (UserEntity) -> Unit) {
-        val subscribe = userDao.getUserByName(userName)
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                onComplete(it)
-            }
-    }
+    fun getUserByName(userName: String): Flowable<UserEntity> = userDao.getUserByName(userName)
 }
