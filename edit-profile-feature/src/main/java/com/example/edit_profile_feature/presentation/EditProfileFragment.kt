@@ -18,6 +18,10 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
 
     private val viewModel: EditProfileViewModel by viewModels()
 
+    private var userNameView: EditText? = null
+    private var backButton: Button? = null
+    private var saveButton: Button? = null
+
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
@@ -32,24 +36,37 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
 
         val repository = RepositoryImpl(sharedPref, userDao)
 
-        viewModel.onViewCreated(repository)
+        viewModel.onViewCreated(repository, navigator)
 
-        val userNameView =
-            requireView().findViewById<EditText>(R.id.editText_user_name_edit_profile)
+        userNameView = requireView().findViewById(R.id.editText_user_name_edit_profile)
+        backButton = requireView().findViewById(R.id.button_back)
+        saveButton = requireView().findViewById(R.id.button_save_edit_profile)
+
+        initObservers()
+        initListeners()
+    }
+
+    override fun onDestroyView() {
+        viewModel.onDestroyView()
+        super.onDestroyView()
+    }
+
+    private fun initObservers() {
         viewModel.user.observe(viewLifecycleOwner) {
-            userNameView.setText(it.name)
+            userNameView?.setText(it.name)
         }
-        userNameView.addTextChangedListener {
+    }
+
+    private fun initListeners() {
+        userNameView?.addTextChangedListener {
             viewModel.userNameChanged(it)
         }
 
-        val backButton = requireView().findViewById<Button>(R.id.button_back)
-        backButton.setOnClickListener {
-            navigator.onClickBackFromEditProfile()
+        backButton?.setOnClickListener {
+            viewModel.onCLickBackButton()
         }
 
-        val saveButton = requireView().findViewById<Button>(R.id.button_save_edit_profile)
-        saveButton.setOnClickListener{
+        saveButton?.setOnClickListener {
             viewModel.onClickSaveButton()
         }
     }
