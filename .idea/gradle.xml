@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="GradleMigrationSettings" migrationVersion="1" />
   <component name="GradleSettings">
     <option name="linkedExternalProjectsSettings">
       <GradleProjectSettings>
@@ -12,8 +13,10 @@
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
             <option value="$PROJECT_DIR$/authorization-feature" />
+            <option value="$PROJECT_DIR$/base" />
             <option value="$PROJECT_DIR$/bottom-navigation-feature" />
             <option value="$PROJECT_DIR$/data" />
+            <option value="$PROJECT_DIR$/domain" />
             <option value="$PROJECT_DIR$/edit-profile-feature" />
             <option value="$PROJECT_DIR$/news-feed-feature" />
             <option value="$PROJECT_DIR$/profile-feature" />
