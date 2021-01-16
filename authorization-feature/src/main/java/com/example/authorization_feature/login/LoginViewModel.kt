@@ -3,9 +3,11 @@ package com.example.authorization_feature.login
 import android.text.Editable
 import androidx.lifecycle.ViewModel
 import com.example.authorization_feature.AuthorizationNavigator
+import com.example.base.mvvm.BaseViewModel
 import com.example.data.RepositoryImpl
+import io.reactivex.android.schedulers.AndroidSchedulers
 
-class LoginViewModel : ViewModel() {
+class LoginViewModel : BaseViewModel() {
 
     private lateinit var repository: RepositoryImpl
     private lateinit var navigator: AuthorizationNavigator
@@ -18,12 +20,18 @@ class LoginViewModel : ViewModel() {
         this.navigator = navigator
     }
 
+    fun onDestroyView() {
+        clear()
+    }
+
     fun onClickLogin() {
-        repository.getUserByName(userName) {
-            val token = it.id?.toLong() ?: 0L
-            repository.setToken(token)
-            navigator.navigateToProfile()
-        }
+        add(repository.getUserByName(userName)
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe {
+                val token = it.id?.toLong() ?: 0L
+                repository.setToken(token)
+                navigator.navigateToProfile()
+            })
     }
 
     fun onClickRegistration() {

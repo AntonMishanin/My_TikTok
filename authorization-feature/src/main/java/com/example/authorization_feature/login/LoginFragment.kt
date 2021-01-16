@@ -32,7 +32,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val repository = RepositoryImpl(sharedPref, userDao)
 
         viewModel.onViewCreated(repository, navigator)
+        initListeners()
+    }
 
+    override fun onDestroyView() {
+        viewModel.onDestroyView()
+        super.onDestroyView()
+    }
+
+    private fun initListeners(){
         val userName = requireView().findViewById<EditText>(R.id.editText_user_name_login)
         userName.addTextChangedListener{
             viewModel.enteringUserName(it)

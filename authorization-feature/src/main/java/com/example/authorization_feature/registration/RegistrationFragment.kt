@@ -33,6 +33,15 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
 
         viewModel.onViewCreated(repository, navigator)
 
+        initListeners()
+    }
+
+    override fun onDestroyView() {
+        viewModel.onDestroyView()
+        super.onDestroyView()
+    }
+
+    private fun initListeners(){
         val loginButton = view?.findViewById<Button>(R.id.button_go_to_login)
         loginButton?.setOnClickListener {
             viewModel.onClickLogin()
