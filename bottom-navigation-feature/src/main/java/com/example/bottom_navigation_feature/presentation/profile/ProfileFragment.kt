@@ -4,6 +4,7 @@ import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import androidx.core.content.ContentProviderCompat.requireContext
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.observe
@@ -47,5 +48,10 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         editProfileButton.setOnClickListener {
             navigator.onClickEditProfile()
         }
+    }
+
+    override fun onDestroyView(){
+        viewModel.onDestroyView()
+        super.onDestroyView()
     }
 }
