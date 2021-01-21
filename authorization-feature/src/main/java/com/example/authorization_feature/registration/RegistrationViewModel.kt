@@ -1,28 +1,31 @@
 package com.example.authorization_feature.registration
 
 import android.text.Editable
-import androidx.lifecycle.ViewModel
 import com.example.authorization_feature.AuthorizationNavigator
 import com.example.base.mvvm.BaseViewModel
-import com.example.data.RepositoryImpl
 import com.example.domain.entity.UserEntity
+import com.example.domain.usecase.InsertUserUseCase
+import com.example.domain.usecase.SetTokenUseCase
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableSingleObserver
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class RegistrationViewModel : BaseViewModel() {
+class RegistrationViewModel
+@Inject constructor(
+    private val insertUserUseCase: InsertUserUseCase,
+    private val setTokenUseCase: SetTokenUseCase
+) : BaseViewModel() {
 
-    private lateinit var repository: RepositoryImpl
     private lateinit var navigator: AuthorizationNavigator
 
     private val user = UserEntity()
 
-    fun onViewCreated(repository: RepositoryImpl, navigator: AuthorizationNavigator) {
-        this.repository = repository
+    fun onViewCreated(navigator: AuthorizationNavigator) {
         this.navigator = navigator
     }
 
-    fun onDestroyView(){
+    fun onDestroyView() {
         clear()
     }
 
@@ -31,17 +34,18 @@ class RegistrationViewModel : BaseViewModel() {
     }
 
     fun onClickRegistration() {
-        add(repository.insertUser(user).subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribeWith(object : DisposableSingleObserver<Long>() {
-                override fun onSuccess(t: Long) {
-                    repository.setToken(t)
-                    navigator.navigateToProfile()
-                }
+        add(
+            insertUserUseCase(user).subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribeWith(object : DisposableSingleObserver<Long>() {
+                    override fun onSuccess(t: Long) {
+                        setTokenUseCase(t)
+                        navigator.navigateToProfile()
+                    }
 
-                override fun onError(e: Throwable) {
-                }
-            })
+                    override fun onError(e: Throwable) {
+                    }
+                })
         )
     }
 
