@@ -53,11 +53,17 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.3.0'
 
     //Room
-    implementation "androidx.room:room-runtime:2.2.6"
+    api "androidx.room:room-runtime:2.2.6"
     kapt "androidx.room:room-compiler:2.2.6"
     implementation 'androidx.room:room-rxjava2:2.2.6'
 
     //Rx
     implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
     implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
+
+    //Dagger
+    api 'com.google.dagger:dagger:2.29.1'
+    api 'com.google.dagger:dagger-android:2.29.1'
+    kapt 'com.google.dagger:dagger-android-processor:2.29.1'
+    kapt 'com.google.dagger:dagger-compiler:2.29.1'
 }
