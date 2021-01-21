@@ -1,4 +1,4 @@
-package com.example.splash_feature
+package com.example.splash_feature.navigation
 
 interface SplashNavigator {
 
