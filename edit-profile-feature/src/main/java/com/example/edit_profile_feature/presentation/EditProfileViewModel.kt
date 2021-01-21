@@ -5,27 +5,30 @@ import androidx.lifecycle.MutableLiveData
 import com.example.base.mvvm.BaseViewModel
 import com.example.data.RepositoryImpl
 import com.example.domain.entity.UserEntity
+import com.example.domain.usecase.GetTokenUseCase
+import com.example.domain.usecase.GetUserByIdUseCase
+import com.example.domain.usecase.UpdateUserUseCase
 import com.example.edit_profile_feature.navigator.EditProfileNavigator
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.schedulers.Schedulers
+import javax.inject.Inject
 
-class EditProfileViewModel : BaseViewModel() {
+class EditProfileViewModel @Inject constructor(
+    private val getTokenUseCase: GetTokenUseCase,
+    private val getUserByIdUseCase: GetUserByIdUseCase,
+    private val updateUserUseCase: UpdateUserUseCase
+) : BaseViewModel() {
 
     var user: MutableLiveData<UserEntity> = MutableLiveData()
     private var newUser = UserEntity()
-    private lateinit var repository: RepositoryImpl
     private lateinit var navigator: EditProfileNavigator
 
-    fun onViewCreated(
-        repository: RepositoryImpl,
-        navigator: EditProfileNavigator
-    ) {
-        this.repository = repository
+    fun onViewCreated(navigator: EditProfileNavigator) {
         this.navigator = navigator
 
-        val token = repository.getToken()
-        add(repository.getUserById(token.toInt())
+        val token = getTokenUseCase()
+        add(getUserByIdUseCase(token.toInt())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe {
                 user.postValue(it)
@@ -42,7 +45,7 @@ class EditProfileViewModel : BaseViewModel() {
     }
 
     fun onClickSaveButton() {
-        repository.updateUser(newUser)
+        updateUserUseCase(newUser)
             .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : DisposableCompletableObserver() {
