@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.splash_feature.SplashFragment"
+        android:name="com.example.splash_feature.presentation.SplashFragment"
         android:label="SplashFragment" />
     <fragment
         android:id="@+id/loginFragment"
