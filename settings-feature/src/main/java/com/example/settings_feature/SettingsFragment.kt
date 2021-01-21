@@ -1,35 +1,36 @@
 package com.example.settings_feature
 
-import android.content.Context
 import android.os.Bundle
 import android.widget.Button
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
-import com.example.data.RepositoryImpl
-import com.example.data.database.UserDatabase
-import com.example.data.preferences.SharedPref
+import androidx.lifecycle.ViewModelProvider
 import com.example.settings_feature.navigator.SettingsNavigator
+import dagger.android.support.AndroidSupportInjection
+import javax.inject.Inject
 
 class SettingsFragment: Fragment(R.layout.fragment_settings) {
 
-    private val viewModel: SettingsViewModel by viewModels()
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+    private val viewModel: SettingsViewModel by viewModels {viewModelFactory}
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        AndroidSupportInjection.inject(this)
+        super.onCreate(savedInstanceState)
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         val navigator = requireActivity() as SettingsNavigator
 
-        val sharedPreferences = requireActivity().getPreferences(Context.MODE_PRIVATE)
-        val sharedPref = SharedPref(sharedPreferences)
+        viewModel.onViewCreated(navigator)
 
-        val userDatabase =
-            UserDatabase.getUserDatabase(requireContext().applicationContext)
-        val userDao = userDatabase.getUserDao()
+        setListeners()
+    }
 
-        val repository = RepositoryImpl(sharedPref, userDao)
-
-        viewModel.onViewCreated(repository, navigator)
-
+    private fun setListeners(){
         val backButton = requireView().findViewById<Button>(R.id.button_back)
         backButton.setOnClickListener{
             viewModel.onClickBack()

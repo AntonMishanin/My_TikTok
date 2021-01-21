@@ -1,21 +1,20 @@
 package com.example.settings_feature
 
 import androidx.lifecycle.ViewModel
-import com.example.data.RepositoryImpl
+import com.example.domain.usecase.SetTokenUseCase
 import com.example.settings_feature.navigator.SettingsNavigator
+import javax.inject.Inject
 
-class SettingsViewModel : ViewModel() {
+class SettingsViewModel @Inject constructor(private val setTokenUseCase: SetTokenUseCase) : ViewModel() {
 
-    private lateinit var repository: RepositoryImpl
     private lateinit var navigator: SettingsNavigator
 
-    fun onViewCreated(repository: RepositoryImpl, navigator: SettingsNavigator) {
-        this.repository = repository
+    fun onViewCreated(navigator: SettingsNavigator) {
         this.navigator = navigator
     }
 
     fun onClickExitButton() {
-        repository.setToken(-1L)
+        setTokenUseCase(-1L)
         navigator.onLogOut()
     }
 
