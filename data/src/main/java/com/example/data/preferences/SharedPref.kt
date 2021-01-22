@@ -1,16 +1,11 @@
 package com.example.data.preferences
 
 import android.content.SharedPreferences
+import androidx.core.content.edit
 
 class SharedPref(private var sharedPreferences: SharedPreferences) {
 
-    fun setToken(token: Long) {
-        val editor = sharedPreferences.edit()
-        editor?.putLong("KEY_TOKEN", token)
-        editor?.apply()
-    }
+    fun setToken(token: Long) = sharedPreferences.edit { putLong("KEY_TOKEN", token) }
 
-    fun getToken(): Long {
-        return sharedPreferences.getLong("KEY_TOKEN", -1)
-    }
+    fun getToken(): Long = sharedPreferences.getLong("KEY_TOKEN", -1)
 }
