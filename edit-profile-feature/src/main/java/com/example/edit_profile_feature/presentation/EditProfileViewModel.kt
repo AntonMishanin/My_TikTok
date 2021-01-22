@@ -3,12 +3,12 @@ package com.example.edit_profile_feature.presentation
 import android.text.Editable
 import androidx.lifecycle.MutableLiveData
 import com.example.base.mvvm.BaseViewModel
-import com.example.data.RepositoryImpl
 import com.example.domain.entity.UserEntity
 import com.example.domain.usecase.GetTokenUseCase
 import com.example.domain.usecase.GetUserByIdUseCase
 import com.example.domain.usecase.UpdateUserUseCase
 import com.example.edit_profile_feature.navigator.EditProfileNavigator
+import com.example.utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
 import io.reactivex.observers.DisposableCompletableObserver
 import io.reactivex.schedulers.Schedulers
@@ -20,7 +20,10 @@ class EditProfileViewModel @Inject constructor(
     private val updateUserUseCase: UpdateUserUseCase
 ) : BaseViewModel() {
 
-    var user: MutableLiveData<UserEntity> = MutableLiveData()
+    var user = MutableLiveData<UserEntity>()
+
+    val saveEvent = SingleLiveEvent<String>()
+
     private var newUser = UserEntity()
     private lateinit var navigator: EditProfileNavigator
 
@@ -57,6 +60,8 @@ class EditProfileViewModel @Inject constructor(
                     //Log.d("TAG", "insert onError ${e.message}")
                 }
             })
+
+        saveEvent("Saved success")
     }
 
     fun onCLickBackButton() {

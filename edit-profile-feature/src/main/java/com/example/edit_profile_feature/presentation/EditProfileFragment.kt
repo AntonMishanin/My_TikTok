@@ -3,6 +3,7 @@ package com.example.edit_profile_feature.presentation
 import android.os.Bundle
 import android.widget.Button
 import android.widget.EditText
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -21,7 +22,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: EditProfileViewModel by viewModels {viewModelFactory}
+    private val viewModel: EditProfileViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
@@ -51,6 +52,10 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
     private fun initObservers() {
         viewModel.user.observe(viewLifecycleOwner) {
             userNameView?.setText(it.name)
+        }
+
+        viewModel.saveEvent.observe(viewLifecycleOwner) { message ->
+            Toast.makeText(requireContext(), message, Toast.LENGTH_SHORT).show()
         }
     }
 
