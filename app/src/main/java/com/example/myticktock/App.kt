@@ -5,10 +5,9 @@ import androidx.multidex.MultiDex
 import androidx.multidex.MultiDexApplication
 import com.example.data.di.DaggerDataComponent
 import com.example.data.di.DataComponent
-import com.example.domain.di.DaggerDomainComponent
-import com.example.domain.di.DomainModule
 import com.example.myticktock.di.DaggerAppComponent
 import com.example.video_feature.di.DaggerVideoComponent
+import com.example.video_feature.di.VideoComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -22,25 +21,11 @@ open class App : MultiDexApplication(), HasAndroidInjector {
     override fun onCreate() {
         super.onCreate()
 
-        val dataComponent = provideDataComponent()
-        dataComponent.inject(this)
-
-        val domainComponent = DaggerDomainComponent
-            .builder()
-            .domainModule(DomainModule(dataComponent.provideRepository()))
-            .build()
-
-        val videoComponent = DaggerVideoComponent
-            .builder()
-            .context(applicationContext)
-            .build()
-
         DaggerAppComponent
             .builder()
-            .application(this)
-            .dataComponent(dataComponent)
-            .domainComponent(domainComponent)
-            .videoComponent(videoComponent)
+            .context(applicationContext)
+            .dataComponent(provideDataComponent())
+            .videoComponent(provideVideoComponent())
             .build()
             .inject(this)
     }
@@ -53,5 +38,14 @@ open class App : MultiDexApplication(), HasAndroidInjector {
     override fun androidInjector(): AndroidInjector<Any> = dispatchingAndroidInjector
 
     private fun provideDataComponent(): DataComponent =
-        DaggerDataComponent.builder().application(this).build()
+        DaggerDataComponent
+            .builder()
+            .context(applicationContext)
+            .build()
+
+    private fun provideVideoComponent(): VideoComponent =
+        DaggerVideoComponent
+            .builder()
+            .context(applicationContext)
+            .build()
 }

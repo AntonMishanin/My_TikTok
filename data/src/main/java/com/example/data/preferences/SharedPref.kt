@@ -2,8 +2,9 @@ package com.example.data.preferences
 
 import android.content.SharedPreferences
 import androidx.core.content.edit
+import javax.inject.Inject
 
-class SharedPref(private var sharedPreferences: SharedPreferences) {
+class SharedPref @Inject constructor(private var sharedPreferences: SharedPreferences) {
 
     fun setToken(token: Long) = sharedPreferences.edit { putLong("KEY_TOKEN", token) }
 

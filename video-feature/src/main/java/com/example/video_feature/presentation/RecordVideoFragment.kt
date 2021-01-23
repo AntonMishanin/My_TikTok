@@ -14,7 +14,7 @@ class RecordVideoFragment : Fragment(R.layout.fragment_record_video) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: RecordVideoViewModel by viewModels {viewModelFactory}
+    private val viewModel: RecordVideoViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
@@ -29,7 +29,7 @@ class RecordVideoFragment : Fragment(R.layout.fragment_record_video) {
         viewModel.onViewCreated(navigator)
 
         val backButton = requireView().findViewById<Button>(R.id.button_back_from_video)
-        backButton.setOnClickListener{
+        backButton.setOnClickListener {
             navigator.onClickBackFromVideo()
         }
     }

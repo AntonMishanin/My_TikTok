@@ -1,13 +1,14 @@
 package com.example.video_feature.di
 
-import android.app.Application
 import android.content.Context
-import com.example.domain.di.DomainComponent
+import com.example.video_feature.data.VideoDataSource
+import com.example.video_feature.data.source.VideoDataSourceImpl
 import com.example.video_feature.domain.VideoRepository
 import dagger.BindsInstance
 import dagger.Component
 
-@Component(modules = [DataModule::class, DomainModule::class])
+
+@Component(modules = [BindsModule::class, DataModule::class])
 interface VideoComponent {
 
     @Component.Builder
@@ -18,5 +19,5 @@ interface VideoComponent {
         fun build(): VideoComponent
     }
 
-fun provideRepository(): VideoRepository
+    fun provideVideoRepository(): VideoRepository
 }

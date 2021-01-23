@@ -4,6 +4,8 @@ import com.example.domain.entity.UserEntity
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
+import javax.inject.Inject
+
 
 interface Repository {
     /*
