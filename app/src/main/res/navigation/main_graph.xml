@@ -29,6 +29,6 @@
         android:label="EditProfileFragment" />
     <fragment
         android:id="@+id/recordVideoFragment"
-        android:name="com.example.video_feature.RecordVideoFragment"
+        android:name="com.example.video_feature.presentation.RecordVideoFragment"
         android:label="RecordVideoFragment" />
 </navigation>

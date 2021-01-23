@@ -8,6 +8,7 @@ import com.example.data.di.DataComponent
 import com.example.domain.di.DaggerDomainComponent
 import com.example.domain.di.DomainModule
 import com.example.myticktock.di.DaggerAppComponent
+import com.example.video_feature.di.DaggerVideoComponent
 import dagger.android.AndroidInjector
 import dagger.android.DispatchingAndroidInjector
 import dagger.android.HasAndroidInjector
@@ -29,11 +30,17 @@ open class App : MultiDexApplication(), HasAndroidInjector {
             .domainModule(DomainModule(dataComponent.provideRepository()))
             .build()
 
+        val videoComponent = DaggerVideoComponent
+            .builder()
+            .context(applicationContext)
+            .build()
+
         DaggerAppComponent
             .builder()
             .application(this)
             .dataComponent(dataComponent)
             .domainComponent(domainComponent)
+            .videoComponent(videoComponent)
             .build()
             .inject(this)
     }

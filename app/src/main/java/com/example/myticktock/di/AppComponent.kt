@@ -2,9 +2,9 @@ package com.example.myticktock.di
 
 import android.app.Application
 import com.example.data.di.DataComponent
-import com.example.data.di.DataModule
 import com.example.domain.di.DomainComponent
 import com.example.myticktock.App
+import com.example.video_feature.di.VideoComponent
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -15,7 +15,7 @@ import javax.inject.Singleton
     modules = [AndroidInjectionModule::class,
         ViewModelModule::class,
         FragmentsBindingModule::class],
-    dependencies = [DataComponent::class, DomainComponent::class]
+    dependencies = [DataComponent::class, DomainComponent::class, VideoComponent::class]
 )
 interface AppComponent {
 
@@ -26,6 +26,7 @@ interface AppComponent {
 
         fun dataComponent(dataComponent: DataComponent): Builder
         fun domainComponent(domainComponent: DomainComponent): Builder
+        fun videoComponent(videoComponent: VideoComponent): Builder
 
         fun build(): AppComponent
     }

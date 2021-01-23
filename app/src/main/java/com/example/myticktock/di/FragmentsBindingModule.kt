@@ -7,7 +7,7 @@ import com.example.bottom_navigation_feature.presentation.profile.ProfileFragmen
 import com.example.edit_profile_feature.presentation.EditProfileFragment
 import com.example.settings_feature.SettingsFragment
 import com.example.splash_feature.presentation.SplashFragment
-import com.example.video_feature.RecordVideoFragment
+import com.example.video_feature.presentation.RecordVideoFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 
