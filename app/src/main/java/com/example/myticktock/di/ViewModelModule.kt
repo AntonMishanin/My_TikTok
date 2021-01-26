@@ -2,8 +2,8 @@ package com.example.myticktock.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.authorization_feature.login.LoginViewModel
-import com.example.authorization_feature.registration.RegistrationViewModel
+import com.example.authorization_feature.presentation.login.LoginViewModel
+import com.example.authorization_feature.presentation.registration.RegistrationViewModel
 import com.example.splash_feature.presentation.SplashViewModel
 import com.example.base.mvvm.ViewModelFactory
 import com.example.bottom_navigation_feature.presentation.news_feed.NewsFeedViewModel

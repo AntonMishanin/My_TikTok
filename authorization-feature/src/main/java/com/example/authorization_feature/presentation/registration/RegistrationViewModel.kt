@@ -1,7 +1,8 @@
-package com.example.authorization_feature.registration
+package com.example.authorization_feature.presentation.registration
 
 import android.text.Editable
-import com.example.authorization_feature.AuthorizationNavigator
+import androidx.lifecycle.MutableLiveData
+import com.example.authorization_feature.navigator.AuthorizationNavigator
 import com.example.base.mvvm.BaseViewModel
 import com.example.domain.entity.UserEntity
 import com.example.domain.usecase.InsertUserUseCase
@@ -16,6 +17,8 @@ class RegistrationViewModel
     private val insertUserUseCase: InsertUserUseCase,
     private val setTokenUseCase: SetTokenUseCase
 ) : BaseViewModel() {
+
+    val enableRegistrationButton = MutableLiveData<Boolean>(false)
 
     private lateinit var navigator: AuthorizationNavigator
 
@@ -51,9 +54,15 @@ class RegistrationViewModel
 
     fun userNameChanged(userName: Editable?) {
         user.name = userName.toString()
+        toggleEnableRegistrationButton()
     }
 
     fun passwordChanged(password: Editable?) {
         user.password = password.toString()
+        toggleEnableRegistrationButton()
+    }
+
+    private fun toggleEnableRegistrationButton(){
+        enableRegistrationButton.value = user.name != "" && user.password != ""
     }
 }

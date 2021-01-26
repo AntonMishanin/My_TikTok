@@ -9,11 +9,11 @@
         android:label="SplashFragment" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.authorization_feature.login.LoginFragment"
+        android:name="com.example.authorization_feature.presentation.login.LoginFragment"
         android:label="LoginFragment" />
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.example.authorization_feature.registration.RegistrationFragment"
+        android:name="com.example.authorization_feature.presentation.registration.RegistrationFragment"
         android:label="RegistrationFragment" />
     <fragment
         android:id="@+id/mainFragment"

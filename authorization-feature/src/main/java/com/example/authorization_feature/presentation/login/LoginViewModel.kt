@@ -1,7 +1,8 @@
-package com.example.authorization_feature.login
+package com.example.authorization_feature.presentation.login
 
 import android.text.Editable
-import com.example.authorization_feature.AuthorizationNavigator
+import androidx.lifecycle.MutableLiveData
+import com.example.authorization_feature.navigator.AuthorizationNavigator
 import com.example.base.mvvm.BaseViewModel
 import com.example.domain.usecase.GetUserByNameUseCase
 import com.example.domain.usecase.SetTokenUseCase
@@ -12,6 +13,8 @@ class LoginViewModel @Inject constructor(
     private val getUserByNameUseCase: GetUserByNameUseCase,
     private val setTokenUseCase: SetTokenUseCase
 ) : BaseViewModel() {
+
+    val enableLoginButton = MutableLiveData<Boolean>(false)
 
     private lateinit var navigator: AuthorizationNavigator
 
@@ -42,9 +45,15 @@ class LoginViewModel @Inject constructor(
 
     fun enteringUserName(inputUserName: Editable?) {
         userName = inputUserName.toString()
+        toggleEnableLoginButton()
     }
 
     fun enteringPassword(inputPassword: Editable?) {
         password = inputPassword.toString()
+        toggleEnableLoginButton()
+    }
+
+    private fun toggleEnableLoginButton(){
+        enableLoginButton.value = userName != "" && password != ""
     }
 }

@@ -1,4 +1,4 @@
-package com.example.authorization_feature.login
+package com.example.authorization_feature.presentation.login
 
 import android.os.Bundle
 import android.widget.Button
@@ -7,7 +7,8 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import com.example.authorization_feature.AuthorizationNavigator
+import androidx.lifecycle.observe
+import com.example.authorization_feature.navigator.AuthorizationNavigator
 import com.example.authorization_feature.R
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -16,7 +17,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: LoginViewModel by viewModels{viewModelFactory}
+    private val viewModel: LoginViewModel by viewModels { viewModelFactory }
+
+    private var loginButton: Button? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
@@ -28,8 +31,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         val navigator = requireActivity() as AuthorizationNavigator
 
-        viewModel.onViewCreated( navigator)
+        viewModel.onViewCreated(navigator)
         initListeners()
+
+        viewModel.enableLoginButton.observe(viewLifecycleOwner) { enableLoginButton ->
+            loginButton?.isEnabled = enableLoginButton
+        }
     }
 
     override fun onDestroyView() {
@@ -37,9 +44,9 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         super.onDestroyView()
     }
 
-    private fun initListeners(){
+    private fun initListeners() {
         val userName = requireView().findViewById<EditText>(R.id.editText_user_name_login)
-        userName.addTextChangedListener{
+        userName.addTextChangedListener {
             viewModel.enteringUserName(it)
         }
 
@@ -48,7 +55,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             viewModel.enteringPassword(it)
         }
 
-        val loginButton = view?.findViewById<Button>(R.id.button_login)
+        loginButton = view?.findViewById(R.id.button_login)
         loginButton?.setOnClickListener {
             viewModel.onClickLogin()
         }

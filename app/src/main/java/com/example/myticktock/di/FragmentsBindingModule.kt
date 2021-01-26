@@ -1,7 +1,7 @@
 package com.example.myticktock.di
 
-import com.example.authorization_feature.login.LoginFragment
-import com.example.authorization_feature.registration.RegistrationFragment
+import com.example.authorization_feature.presentation.login.LoginFragment
+import com.example.authorization_feature.presentation.registration.RegistrationFragment
 import com.example.bottom_navigation_feature.presentation.news_feed.NewsFeedFragment
 import com.example.bottom_navigation_feature.presentation.profile.ProfileFragment
 import com.example.edit_profile_feature.presentation.EditProfileFragment

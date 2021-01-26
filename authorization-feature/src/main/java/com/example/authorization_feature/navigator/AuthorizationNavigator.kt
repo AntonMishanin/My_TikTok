@@ -1,4 +1,4 @@
-package com.example.authorization_feature
+package com.example.authorization_feature.navigator
 
 interface AuthorizationNavigator {
 
