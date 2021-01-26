@@ -16,7 +16,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: ProfileViewModel by viewModels {viewModelFactory}
+    private val viewModel: ProfileViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
@@ -44,9 +44,11 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         editProfileButton.setOnClickListener {
             viewModel.onClickEditProfile()
         }
+
+
     }
 
-    override fun onDestroyView(){
+    override fun onDestroyView() {
         viewModel.onDestroyView()
         super.onDestroyView()
     }
