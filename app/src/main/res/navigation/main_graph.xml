@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <navigation xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/main_graph"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_graph"
     app:startDestination="@id/splashFragment">
 
     <fragment
@@ -18,7 +19,14 @@
     <fragment
         android:id="@+id/mainFragment"
         android:name="com.example.bottom_navigation_feature.presentation.main.MainFragment"
-        android:label="MainFragment" />
+        android:label="MainFragment">
+        <action
+            android:id="@+id/action_mainFragment_to_detailFragment"
+            app:destination="@id/detailFragment"/>
+        <action
+            android:id="@+id/action_mainFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/settingsFragment"
         android:name="com.example.settings_feature.SettingsFragment"
@@ -31,4 +39,10 @@
         android:id="@+id/recordVideoFragment"
         android:name="com.example.video_feature.presentation.RecordVideoFragment"
         android:label="RecordVideoFragment" />
+    <fragment
+        android:id="@+id/detailFragment"
+        android:name="com.example.bottom_navigation_feature.presentation.news_feed.DetailFragment"
+        android:label="DetailFragment" />
+
+
 </navigation>
