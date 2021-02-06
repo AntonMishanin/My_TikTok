@@ -49,6 +49,9 @@ dependencies {
     //Material
     implementation 'com.google.android.material:material:1.2.1'
 
+    //ViewPager2
+    implementation "androidx.viewpager2:viewpager2:1.0.0-alpha01"
+
     //Test
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.2'
