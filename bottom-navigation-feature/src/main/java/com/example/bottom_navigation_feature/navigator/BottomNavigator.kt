@@ -7,4 +7,6 @@ interface BottomNavigator {
     fun onClickSettings()
 
     fun onClickVideo()
+
+    fun navigateToDetailFragment()
 }
