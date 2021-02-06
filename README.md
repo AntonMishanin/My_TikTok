@@ -28,3 +28,5 @@ News-feed-feature
  - Show list of posts from all users.
  - Search by posts title. 
  - Show detail information of post by click on it
+
+![alt text](https://github.com/AntonMishanin/My_TikTok/blob/master/Diagram.png)
