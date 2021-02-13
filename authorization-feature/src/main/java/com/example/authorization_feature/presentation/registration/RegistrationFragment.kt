@@ -2,7 +2,8 @@ package com.example.authorization_feature.presentation.registration
 
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
+import android.widget.ImageButton
+import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.fragment.app.Fragment
@@ -10,6 +11,8 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
 import com.example.authorization_feature.navigator.AuthorizationNavigator
 import com.example.authorization_feature.R
+import com.example.utils.showKeyboard
+import com.google.android.material.textfield.TextInputLayout
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -34,6 +37,7 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
         viewModel.onViewCreated(navigator)
 
         initListeners()
+        showKeyboard(requireContext())
 
         viewModel.enableRegistrationButton.observe(viewLifecycleOwner) { enableRegistrationButton ->
             registrationButton?.isEnabled = enableRegistrationButton
@@ -43,11 +47,17 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
     override fun onDestroyView() {
         viewModel.onDestroyView()
         super.onDestroyView()
+
     }
 
     private fun initListeners() {
-        val loginButton = view?.findViewById<Button>(R.id.button_go_to_login)
-        loginButton?.setOnClickListener {
+        val loginView = view?.findViewById<TextView>(R.id.textView_go_to_log_in)
+        loginView?.setOnClickListener {
+            viewModel.onClickLogin()
+        }
+
+        val backView = view?.findViewById<ImageButton>(R.id.imageButton_arrow_back)
+        backView?.setOnClickListener{
             viewModel.onClickLogin()
         }
 
@@ -56,14 +66,18 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
             viewModel.onClickRegistration()
         }
 
-        val inputUserName = requireView().findViewById<EditText>(R.id.editText_input_user_name)
-        inputUserName.addTextChangedListener {
-            viewModel.userNameChanged(it)
+        val inputUserName = requireView().findViewById<TextInputLayout>(R.id.editText_input_user_name)
+        inputUserName.addOnEditTextAttachedListener { layout ->
+            layout.editText?.addTextChangedListener {
+                viewModel.userNameChanged(it)
+            }
         }
 
-        val inputPassword = requireView().findViewById<EditText>(R.id.editText_input_user_password)
-        inputPassword.addTextChangedListener {
-            viewModel.passwordChanged(it)
+        val inputPassword = requireView().findViewById<TextInputLayout>(R.id.editText_input_user_password)
+        inputPassword.addOnEditTextAttachedListener { layout ->
+            layout.editText?.addTextChangedListener {
+                viewModel.passwordChanged(it)
+            }
         }
     }
 }

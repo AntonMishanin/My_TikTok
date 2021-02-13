@@ -2,16 +2,19 @@ package com.example.authorization_feature.presentation.login
 
 import android.os.Bundle
 import android.widget.Button
-import android.widget.EditText
+import android.widget.TextView
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
-import com.example.authorization_feature.navigator.AuthorizationNavigator
 import com.example.authorization_feature.R
+import com.example.authorization_feature.navigator.AuthorizationNavigator
+import com.example.utils.showKeyboard
+import com.google.android.material.textfield.TextInputLayout
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
+
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
@@ -33,6 +36,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         viewModel.onViewCreated(navigator)
         initListeners()
+        showKeyboard(requireContext())
 
         viewModel.enableLoginButton.observe(viewLifecycleOwner) { enableLoginButton ->
             loginButton?.isEnabled = enableLoginButton
@@ -45,14 +49,18 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
     }
 
     private fun initListeners() {
-        val userName = requireView().findViewById<EditText>(R.id.editText_user_name_login)
-        userName.addTextChangedListener {
-            viewModel.enteringUserName(it)
+        val userNameLayout = requireView().findViewById<TextInputLayout>(R.id.editText_user_name_login)
+        userNameLayout.addOnEditTextAttachedListener { layout ->
+            layout.editText?.addTextChangedListener {
+                viewModel.enteringUserName(it)
+            }
         }
 
-        val password = requireView().findViewById<EditText>(R.id.editText_user_password_login)
-        password.addTextChangedListener {
-            viewModel.enteringPassword(it)
+        val password = requireView().findViewById<TextInputLayout>(R.id.editText_user_password_login)
+        password.addOnEditTextAttachedListener {layout->
+            layout.editText?.addTextChangedListener {
+                viewModel.enteringPassword(it)
+            }
         }
 
         loginButton = view?.findViewById(R.id.button_login)
@@ -60,8 +68,8 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
             viewModel.onClickLogin()
         }
 
-        val registrationButton = view?.findViewById<Button>(R.id.button_go_to_registration)
-        registrationButton?.setOnClickListener {
+        val registrationView = view?.findViewById<TextView>(R.id.textView_go_to_registration)
+        registrationView?.setOnClickListener {
             viewModel.onClickRegistration()
         }
     }
