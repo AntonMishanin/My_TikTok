@@ -3,7 +3,7 @@ package com.example.myticktock.di
 import com.example.authorization_feature.presentation.login.LoginFragment
 import com.example.authorization_feature.presentation.registration.RegistrationFragment
 import com.example.bottom_navigation_feature.presentation.news_feed.NewsFeedFragment
-import com.example.bottom_navigation_feature.presentation.profile.ProfileFragment
+import com.example.feature_profile.presentation.ProfileFragment
 import com.example.edit_profile_feature.presentation.EditProfileFragment
 import com.example.settings_feature.SettingsFragment
 import com.example.splash_feature.presentation.SplashFragment
@@ -24,7 +24,7 @@ abstract class FragmentsBindingModule {
     abstract fun loginFragment(): LoginFragment
 
     @ContributesAndroidInjector
-    abstract fun profileFragment(): ProfileFragment
+    abstract fun profileFragment(): com.example.feature_profile.presentation.ProfileFragment
 
     @ContributesAndroidInjector
     abstract fun newsFeedFragment(): NewsFeedFragment

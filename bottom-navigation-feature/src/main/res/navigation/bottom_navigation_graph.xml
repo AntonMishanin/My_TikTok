@@ -9,6 +9,6 @@
         android:label="NewsFeedFragment" />
     <fragment
         android:id="@+id/profileFragment"
-        android:name="com.example.bottom_navigation_feature.presentation.profile.ProfileFragment"
+        android:name="com.example.feature_profile.presentation.ProfileFragment"
         android:label="ProfileFragment" />
 </navigation>

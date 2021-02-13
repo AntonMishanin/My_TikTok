@@ -7,7 +7,7 @@ import com.example.authorization_feature.presentation.registration.RegistrationV
 import com.example.splash_feature.presentation.SplashViewModel
 import com.example.base.mvvm.ViewModelFactory
 import com.example.bottom_navigation_feature.presentation.news_feed.NewsFeedViewModel
-import com.example.bottom_navigation_feature.presentation.profile.ProfileViewModel
+import com.example.feature_profile.presentation.ProfileViewModel
 import com.example.edit_profile_feature.presentation.EditProfileViewModel
 import com.example.settings_feature.SettingsViewModel
 import com.example.video_feature.presentation.RecordVideoViewModel
@@ -38,8 +38,8 @@ abstract class ViewModelModule {
 
     @Binds
     @IntoMap
-    @ViewModelKey(ProfileViewModel::class)
-    abstract fun bindProfileViewModel(profileViewModel: ProfileViewModel): ViewModel
+    @ViewModelKey(com.example.feature_profile.presentation.ProfileViewModel::class)
+    abstract fun bindProfileViewModel(profileViewModel: com.example.feature_profile.presentation.ProfileViewModel): ViewModel
 
     @Binds
     @IntoMap

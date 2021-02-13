@@ -1,4 +1,4 @@
-package com.example.bottom_navigation_feature.presentation.profile
+package com.example.feature_profile.presentation
 
 import android.os.Bundle
 import android.widget.Button
@@ -7,8 +7,8 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.observe
-import com.example.bottom_navigation_feature.R
-import com.example.bottom_navigation_feature.navigator.BottomNavigator
+import com.example.feature_profile.R
+import com.example.feature_profile.navigator.ProfileNavigator
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -26,7 +26,7 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        val navigator = requireActivity() as BottomNavigator
+        val navigator = requireActivity() as ProfileNavigator
 
         viewModel.onViewCreated(navigator)
 

@@ -40,6 +40,8 @@ dependencies {
     implementation project(':data')
     implementation project(':domain')
 
+    implementation project(':feature-profile')
+
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
 
