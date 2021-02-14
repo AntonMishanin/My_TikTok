@@ -1,4 +1,4 @@
-package com.example.feature_profile.presentation
+package com.example.feature_profile.presentation.main
 
 import androidx.lifecycle.MutableLiveData
 import com.example.base.mvvm.BaseViewModel
