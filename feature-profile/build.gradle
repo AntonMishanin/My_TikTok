@@ -37,6 +37,7 @@ dependencies {
 
     implementation project(':base')
     implementation project(':domain')
+    implementation project(':utils')
 
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
