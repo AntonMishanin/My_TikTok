@@ -39,7 +39,7 @@ dependencies {
     implementation project(':authorization-feature')
     implementation project(':bottom-navigation-feature')
     implementation project(':feature-profile')
-    implementation project(':edit-profile-feature')
+    implementation project(':feature-edit-profile')
     implementation project(':settings-feature')
     implementation project(':splash-feature')
     implementation project(':video-feature')
