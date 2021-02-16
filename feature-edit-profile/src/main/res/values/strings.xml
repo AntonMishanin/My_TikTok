@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="edit_profile">Edit profile</string>
+    <string name="save">Save</string>
+    <string name="user_name">User name</string>
+</resources>
