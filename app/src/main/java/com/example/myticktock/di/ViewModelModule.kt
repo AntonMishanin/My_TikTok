@@ -10,7 +10,7 @@ import com.example.bottom_navigation_feature.presentation.news_feed.NewsFeedView
 import com.example.feature_profile.presentation.main.ProfileViewModel
 import com.example.edit_profile_feature.presentation.EditProfileViewModel
 import com.example.feature_profile.presentation.posts.PostsViewModel
-import com.example.settings_feature.SettingsViewModel
+import com.example.settings_feature.presentation.SettingsViewModel
 import com.example.video_feature.presentation.RecordVideoViewModel
 import dagger.Binds
 import dagger.Module
