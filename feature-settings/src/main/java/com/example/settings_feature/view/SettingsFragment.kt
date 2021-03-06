@@ -2,7 +2,7 @@ package com.example.settings_feature.view
 
 import android.os.Bundle
 import android.view.View
-import android.widget.Button
+import android.widget.ImageButton
 import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -42,8 +42,6 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         viewModel.onViewCreated(navigator)
         initView()
         observeViewModel()
-
-        setListeners()
     }
 
     private fun initView() {
@@ -52,9 +50,12 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         recyclerViewContent = view?.findViewById(R.id.recyclerView_settings_content)
         recyclerViewContent?.adapter = adapter
 
-        progressBar = view?.findViewById(R.id.progreesBar)
+        progressBar = view?.findViewById(R.id.progress_bar)
 
         failView = view?.findViewById(R.id.layout_fail)
+
+        val backButton = requireView().findViewById<ImageButton>(R.id.button_back)
+        backButton.setOnClickListener { viewModel.onClickBack() }
     }
 
     private fun observeViewModel() {
@@ -62,17 +63,9 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         viewModel.state.observe(viewLifecycleOwner, ::changeState)
     }
 
-    private fun changeState(state: UiState){
-        recyclerViewContent?.visible(state==UiState.CONTENT)
+    private fun changeState(state: UiState) {
+        recyclerViewContent?.visible(state == UiState.CONTENT)
         progressBar?.visible(state == UiState.PROGRESS)
-        failView?.visible(state==UiState.FAIL)
-    }
-
-    private fun setListeners() {
-        val backButton = requireView().findViewById<Button>(R.id.button_back)
-        backButton.setOnClickListener { viewModel.onClickBack() }
-
-        val exitButton = requireView().findViewById<Button>(R.id.button_exit_settings)
-        exitButton.setOnClickListener { viewModel.onClickExitButton() }
+        failView?.visible(state == UiState.FAIL)
     }
 }

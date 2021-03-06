@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.settings_feature.R
 import com.example.settings_feature.domain.entity.SettingsEntityUi
 import com.example.settings_feature.utils.Constants.Companion.VIEW_TYPE_DESCRIPTION
+import com.example.settings_feature.utils.Constants.Companion.VIEW_TYPE_LOG_OUT
 import com.example.settings_feature.utils.Constants.Companion.VIEW_TYPE_TITLE
 
 class SettingsAdapter(
@@ -22,9 +23,11 @@ class SettingsAdapter(
             VIEW_TYPE_TITLE -> {
                 val inflater =
                     LayoutInflater.from(parent.context).inflate(R.layout.item_title, parent, false)
-                return TitleViewHolder(
-                    inflater
-                )
+                return TitleViewHolder(inflater)
+            }
+            VIEW_TYPE_LOG_OUT -> {
+                val inflater = LayoutInflater.from(parent.context).inflate(R.layout.item_title, parent, false)
+                return TitleViewHolder(inflater)
             }
             VIEW_TYPE_DESCRIPTION -> {
                 val inflater =
@@ -52,6 +55,11 @@ class SettingsAdapter(
 
         when (holder.itemViewType) {
             VIEW_TYPE_TITLE -> {
+                val titleViewHolder = holder as TitleViewHolder
+                titleViewHolder.bind(content[position])
+                titleViewHolder.itemView.setOnClickListener { onItemClickListener(position) }
+            }
+            VIEW_TYPE_LOG_OUT -> {
                 val titleViewHolder = holder as TitleViewHolder
                 titleViewHolder.bind(content[position])
                 titleViewHolder.itemView.setOnClickListener { onItemClickListener(position) }

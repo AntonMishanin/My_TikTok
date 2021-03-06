@@ -46,5 +46,9 @@
   {
     "view_type": 1,
     "text": "Description 6"
+  },
+  {
+    "view_type": 2,
+    "text": "Log out"
   }
 ]
