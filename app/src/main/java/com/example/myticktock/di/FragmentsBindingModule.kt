@@ -2,7 +2,7 @@ package com.example.myticktock.di
 
 import com.example.authorization_feature.presentation.login.LoginFragment
 import com.example.authorization_feature.presentation.registration.RegistrationFragment
-import com.example.bottom_navigation_feature.presentation.news_feed.NewsFeedFragment
+import com.example.feature_users_feed.presentation.NewsFeedFragment
 import com.example.feature_profile.presentation.main.ProfileFragment
 import com.example.edit_profile_feature.presentation.EditProfileFragment
 import com.example.feature_profile.presentation.posts.PostsFragment

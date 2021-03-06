@@ -18,7 +18,7 @@
         android:label="RegistrationFragment" />
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.bottom_navigation_feature.presentation.main.MainFragment"
+        android:name="com.example.bottom_navigation_feature.presentation.MainFragment"
         android:label="MainFragment">
         <action
             android:id="@+id/action_mainFragment_to_detailFragment"

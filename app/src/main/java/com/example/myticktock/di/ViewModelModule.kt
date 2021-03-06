@@ -6,7 +6,7 @@ import com.example.authorization_feature.presentation.login.LoginViewModel
 import com.example.authorization_feature.presentation.registration.RegistrationViewModel
 import com.example.splash_feature.presentation.SplashViewModel
 import com.example.base.mvvm.ViewModelFactory
-import com.example.bottom_navigation_feature.presentation.news_feed.NewsFeedViewModel
+import com.example.feature_users_feed.presentation.NewsFeedViewModel
 import com.example.feature_profile.presentation.main.ProfileViewModel
 import com.example.edit_profile_feature.presentation.EditProfileViewModel
 import com.example.feature_profile.presentation.posts.PostsViewModel

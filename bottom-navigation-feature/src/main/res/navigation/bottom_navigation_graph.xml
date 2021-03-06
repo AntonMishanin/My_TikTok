@@ -5,7 +5,7 @@
 
     <fragment
         android:id="@+id/newsFeedFragment"
-        android:name="com.example.bottom_navigation_feature.presentation.news_feed.NewsFeedFragment"
+        android:name="com.example.feature_users_feed.presentation.NewsFeedFragment"
         android:label="NewsFeedFragment" />
     <fragment
         android:id="@+id/profileFragment"
