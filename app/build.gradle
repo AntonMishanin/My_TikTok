@@ -40,7 +40,7 @@ dependencies {
     implementation project(':bottom-navigation-feature')
     implementation project(':feature-profile')
     implementation project(':feature-edit-profile')
-    implementation project(':settings-feature')
+    implementation project(':feature-settings')
     implementation project(':splash-feature')
     implementation project(':video-feature')
     implementation project(':base')

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="log_out">Log out</string>
+    <string name="error">Error</string>
+    <string name="settings">Settings</string>
+</resources>
