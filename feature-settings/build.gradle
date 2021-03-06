@@ -69,4 +69,8 @@ dependencies {
     api 'com.google.dagger:dagger-android:2.29.1'
     kapt 'com.google.dagger:dagger-android-processor:2.29.1'
     kapt 'com.google.dagger:dagger-compiler:2.29.1'
+
+    //Rx
+    implementation 'io.reactivex.rxjava2:rxandroid:2.0.1'
+    implementation 'io.reactivex.rxjava2:rxjava:2.2.9'
 }
