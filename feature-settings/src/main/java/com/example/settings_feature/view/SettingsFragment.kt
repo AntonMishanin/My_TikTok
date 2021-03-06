@@ -1,4 +1,4 @@
-package com.example.settings_feature.presentation
+package com.example.settings_feature.view
 
 import android.os.Bundle
 import android.view.View
@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.base.UiState
 import com.example.settings_feature.R
 import com.example.settings_feature.navigator.SettingsNavigator
+import com.example.settings_feature.view_model.SettingsViewModel
 import com.example.utils.visible
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -46,7 +47,8 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
     }
 
     private fun initView() {
-        adapter = SettingsAdapter(viewModel::onItemClick)
+        adapter =
+            SettingsAdapter(viewModel::onItemClick)
         recyclerViewContent = view?.findViewById(R.id.recyclerView_settings_content)
         recyclerViewContent?.adapter = adapter
 

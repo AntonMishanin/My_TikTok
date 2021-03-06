@@ -1,23 +1,26 @@
-package com.example.settings_feature.presentation
+package com.example.settings_feature.view_model
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import com.example.base.UiState
 import com.example.domain.usecase.SetTokenUseCase
+import com.example.settings_feature.domain.entity.SettingsEntityUi
+import com.example.settings_feature.domain.use_case.GetContentUseCase
 import com.example.settings_feature.navigator.SettingsNavigator
 import javax.inject.Inject
 
 class SettingsViewModel @Inject constructor(
-    private val setTokenUseCase: SetTokenUseCase
+    private val setTokenUseCase: SetTokenUseCase,
+    getContentUseCase: GetContentUseCase
 ) : ViewModel() {
 
     private lateinit var navigator: SettingsNavigator
 
-    var content = MutableLiveData<List<String>>()
+    var content = MutableLiveData<List<SettingsEntityUi>>()
     var state = MutableLiveData(UiState.PROGRESS)
 
     init {
-        content.value = listOf("String1", "String2", "String3", "String4", "String5", "String6")
+        content.value = getContentUseCase()
         state.value = UiState.CONTENT
     }
 

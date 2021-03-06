@@ -29,7 +29,7 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.settings_feature.presentation.SettingsFragment"
+        android:name="com.example.settings_feature.view.SettingsFragment"
         android:label="SettingsFragment" />
     <fragment
         android:id="@+id/editProfileFragment"

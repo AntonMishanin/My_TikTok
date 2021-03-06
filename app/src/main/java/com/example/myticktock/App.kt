@@ -6,6 +6,8 @@ import androidx.multidex.MultiDexApplication
 import com.example.data.di.DaggerDataComponent
 import com.example.data.di.DataComponent
 import com.example.myticktock.di.DaggerAppComponent
+import com.example.settings_feature.di.DaggerSettingsComponent
+import com.example.settings_feature.di.SettingsComponent
 import com.example.video_feature.di.DaggerVideoComponent
 import com.example.video_feature.di.VideoComponent
 import dagger.android.AndroidInjector
@@ -26,6 +28,7 @@ open class App : MultiDexApplication(), HasAndroidInjector {
             .context(applicationContext)
             .dataComponent(provideDataComponent())
             .videoComponent(provideVideoComponent())
+            .settingsComponent(provideSettingsComponent())
             .build()
             .inject(this)
     }
@@ -45,6 +48,12 @@ open class App : MultiDexApplication(), HasAndroidInjector {
 
     private fun provideVideoComponent(): VideoComponent =
         DaggerVideoComponent
+            .builder()
+            .context(applicationContext)
+            .build()
+
+    private fun provideSettingsComponent(): SettingsComponent =
+        DaggerSettingsComponent
             .builder()
             .context(applicationContext)
             .build()
