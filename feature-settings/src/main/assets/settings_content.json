@@ -1,0 +1,54 @@
+[
+  {
+    "view_type": 0,
+    "text": "Title 1"
+  },
+  {
+    "view_type": 1,
+    "text": "Description 1"
+  },
+  {
+    "view_type": 0,
+    "text": "Title 2"
+  },
+  {
+    "view_type": 1,
+    "text": "Description 2"
+  },
+  {
+    "view_type": 0,
+    "text": "Title 3"
+  },
+  {
+    "view_type": 1,
+    "text": "Description 3"
+  },
+  {
+    "view_type": 0,
+    "text": "Title 4"
+  },
+  {
+    "view_type": 1,
+    "text": "Description 4"
+  },
+  {
+    "view_type": 0,
+    "text": "Title 5"
+  },
+  {
+    "view_type": 1,
+    "text": "Description 5"
+  },
+  {
+    "view_type": 0,
+    "text": "Title 6"
+  },
+  {
+    "view_type": 1,
+    "text": "Description 6"
+  },
+  {
+    "view_type": 2,
+    "text": "Log out"
+  }
+]

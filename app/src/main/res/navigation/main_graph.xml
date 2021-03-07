@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/main_graph"
+    app:startDestination="@id/splashFragment">
+
+    <fragment
+        android:id="@+id/splashFragment"
+        android:name="com.example.feature_splash.presentation.SplashFragment"
+        android:label="SplashFragment" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.example.feature_authorization.presentation.login.LoginFragment"
+        android:label="LoginFragment" />
+    <fragment
+        android:id="@+id/registrationFragment"
+        android:name="com.example.feature_authorization.presentation.registration.RegistrationFragment"
+        android:label="RegistrationFragment" />
+    <fragment
+        android:id="@+id/mainFragment"
+        android:name="com.example.feature_bottom_navigation.presentation.MainFragment"
+        android:label="MainFragment">
+        <action
+            android:id="@+id/action_mainFragment_to_settingsFragment"
+            app:destination="@id/settingsFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/settingsFragment"
+        android:name="com.example.feature_settings.view.SettingsFragment"
+        android:label="SettingsFragment" />
+    <fragment
+        android:id="@+id/editProfileFragment"
+        android:name="com.example.feature_edit_profile.presentation.EditProfileFragment"
+        android:label="EditProfileFragment" />
+    <fragment
+        android:id="@+id/recordVideoFragment"
+        android:name="com.example.feature_video.presentation.RecordVideoFragment"
+        android:label="RecordVideoFragment" />
+</navigation>

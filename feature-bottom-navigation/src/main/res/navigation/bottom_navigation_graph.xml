@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto" android:id="@+id/bottom_navigation_graph"
+    app:startDestination="@id/profileFragment">
+
+    <fragment
+        android:id="@+id/newsFeedFragment"
+        android:name="com.example.feature_users_feed.presentation.UsersFeedFragment"
+        android:label="NewsFeedFragment" />
+    <fragment
+        android:id="@+id/profileFragment"
+        android:name="com.example.feature_profile.presentation.main.ProfileFragment"
+        android:label="ProfileFragment" />
+</navigation>

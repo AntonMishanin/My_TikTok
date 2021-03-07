@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="news">news</string>
+    <string name="video">video</string>
+    <string name="profile">profile</string>
+</resources>

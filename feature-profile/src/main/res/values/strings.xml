@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="profile">Profile</string>
+    <string name="edit_profile">Edit profile</string>
+    <string name="retry">Retry</string>
+    <string name="loading_fail">Loading fail</string>
+    <string name="you_don_t_have_a_posts">You don\'t have a posts</string>
+    <string name="fake">Fake</string>
+</resources>
