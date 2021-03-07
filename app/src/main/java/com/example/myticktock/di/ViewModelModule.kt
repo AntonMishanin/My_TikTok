@@ -2,16 +2,16 @@ package com.example.myticktock.di
 
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
-import com.example.authorization_feature.presentation.login.LoginViewModel
-import com.example.authorization_feature.presentation.registration.RegistrationViewModel
-import com.example.splash_feature.presentation.SplashViewModel
-import com.example.base.mvvm.ViewModelFactory
+import com.example.feature_authorization.presentation.login.LoginViewModel
+import com.example.feature_authorization.presentation.registration.RegistrationViewModel
+import com.example.feature_splash.presentation.SplashViewModel
+import com.example.shared_base.mvvm.ViewModelFactory
 import com.example.feature_users_feed.presentation.UsersFeedViewModel
 import com.example.feature_profile.presentation.main.ProfileViewModel
-import com.example.edit_profile_feature.presentation.EditProfileViewModel
+import com.example.feature_edit_profile.presentation.EditProfileViewModel
 import com.example.feature_profile.presentation.posts.PostsViewModel
-import com.example.settings_feature.view_model.SettingsViewModel
-import com.example.video_feature.presentation.RecordVideoViewModel
+import com.example.feature_settings.view_model.SettingsViewModel
+import com.example.feature_video.presentation.RecordVideoViewModel
 import dagger.Binds
 import dagger.Module
 import dagger.multibindings.IntoMap

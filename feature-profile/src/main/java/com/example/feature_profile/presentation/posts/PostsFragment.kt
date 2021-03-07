@@ -7,9 +7,9 @@ import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.RecyclerView
-import com.example.base.UiState
+import com.example.shared_base.UiState
 import com.example.feature_profile.R
-import com.example.utils.visible
+import com.example.shared_utils.visible
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 

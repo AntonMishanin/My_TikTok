@@ -5,13 +5,13 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
-import com.example.authorization_feature.navigator.AuthorizationNavigator
-import com.example.bottom_navigation_feature.navigator.BottomNavigator
-import com.example.edit_profile_feature.navigator.EditProfileNavigator
+import com.example.feature_authorization.navigator.AuthorizationNavigator
+import com.example.feature_bottom_navigation.navigator.BottomNavigator
+import com.example.feature_edit_profile.navigator.EditProfileNavigator
 import com.example.feature_profile.navigator.ProfileNavigator
-import com.example.settings_feature.navigator.SettingsNavigator
-import com.example.splash_feature.navigation.SplashNavigator
-import com.example.video_feature.navigator.VideoNavigator
+import com.example.feature_settings.navigator.SettingsNavigator
+import com.example.feature_splash.navigation.SplashNavigator
+import com.example.feature_video.navigator.VideoNavigator
 
 class SingleActivity : AppCompatActivity(),
     SplashNavigator,

@@ -37,19 +37,19 @@ android {
 dependencies {
 
     //Feature module
-    implementation project(':authorization-feature')
-    implementation project(':bottom-navigation-feature')
+    implementation project(':feature-authorization')
+    implementation project(':feature-bottom-navigation')
     implementation project(':feature-profile')
     implementation project(':feature-users-feed')
     implementation project(':feature-edit-profile')
     implementation project(':feature-settings')
-    implementation project(':splash-feature')
-    implementation project(':video-feature')
+    implementation project(':feature-splash')
+    implementation project(':feature-video')
 
     //Shared module
-    implementation project(':base')
-    implementation project(':domain')
-    implementation project(':data')
+    implementation project(':shared-base')
+    implementation project(':shared-domain')
+    implementation project(':shared-data')
 
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"

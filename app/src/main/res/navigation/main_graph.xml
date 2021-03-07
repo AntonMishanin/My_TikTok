@@ -6,19 +6,19 @@
 
     <fragment
         android:id="@+id/splashFragment"
-        android:name="com.example.splash_feature.presentation.SplashFragment"
+        android:name="com.example.feature_splash.presentation.SplashFragment"
         android:label="SplashFragment" />
     <fragment
         android:id="@+id/loginFragment"
-        android:name="com.example.authorization_feature.presentation.login.LoginFragment"
+        android:name="com.example.feature_authorization.presentation.login.LoginFragment"
         android:label="LoginFragment" />
     <fragment
         android:id="@+id/registrationFragment"
-        android:name="com.example.authorization_feature.presentation.registration.RegistrationFragment"
+        android:name="com.example.feature_authorization.presentation.registration.RegistrationFragment"
         android:label="RegistrationFragment" />
     <fragment
         android:id="@+id/mainFragment"
-        android:name="com.example.bottom_navigation_feature.presentation.MainFragment"
+        android:name="com.example.feature_bottom_navigation.presentation.MainFragment"
         android:label="MainFragment">
         <action
             android:id="@+id/action_mainFragment_to_detailFragment"
@@ -29,20 +29,14 @@
     </fragment>
     <fragment
         android:id="@+id/settingsFragment"
-        android:name="com.example.settings_feature.view.SettingsFragment"
+        android:name="com.example.feature_settings.view.SettingsFragment"
         android:label="SettingsFragment" />
     <fragment
         android:id="@+id/editProfileFragment"
-        android:name="com.example.edit_profile_feature.presentation.EditProfileFragment"
+        android:name="com.example.feature_edit_profile.presentation.EditProfileFragment"
         android:label="EditProfileFragment" />
     <fragment
         android:id="@+id/recordVideoFragment"
-        android:name="com.example.video_feature.presentation.RecordVideoFragment"
+        android:name="com.example.feature_video.presentation.RecordVideoFragment"
         android:label="RecordVideoFragment" />
-    <fragment
-        android:id="@+id/detailFragment"
-        android:name="com.example.bottom_navigation_feature.presentation.news_feed.DetailFragment"
-        android:label="DetailFragment" />
-
-
 </navigation>

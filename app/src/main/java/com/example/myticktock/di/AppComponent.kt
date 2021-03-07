@@ -1,10 +1,10 @@
 package com.example.myticktock.di
 
 import android.content.Context
-import com.example.data.di.DataComponent
+import com.example.shared_data.di.DataComponent
 import com.example.myticktock.App
-import com.example.settings_feature.di.SettingsComponent
-import com.example.video_feature.di.VideoComponent
+import com.example.feature_settings.di.SettingsComponent
+import com.example.feature_video.di.VideoComponent
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
