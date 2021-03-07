@@ -3,13 +3,13 @@
 
     <item
         android:id="@+id/newsFeedFragment"
-        android:title="news" />
+        android:title="@string/news" />
 
     <item
         android:id="@+id/recordVideoFragment"
-        android:title="video" />
+        android:title="@string/video" />
 
     <item
         android:id="@+id/profileFragment"
-        android:title="profile" />
+        android:title="@string/profile" />
 </menu>

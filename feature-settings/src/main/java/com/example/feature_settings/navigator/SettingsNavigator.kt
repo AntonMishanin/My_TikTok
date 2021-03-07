@@ -2,7 +2,7 @@ package com.example.feature_settings.navigator
 
 interface SettingsNavigator {
 
-    fun onClickBack()
+    fun navigateBack()
 
     fun onLogOut()
 }

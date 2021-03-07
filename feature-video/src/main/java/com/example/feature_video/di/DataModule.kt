@@ -1,6 +1,5 @@
 package com.example.feature_video.di
 
-import android.content.Context
 import com.example.feature_video.data.VideoDataSource
 import com.example.feature_video.data.source.VideoDataSourceImpl
 import dagger.Module
@@ -10,6 +9,6 @@ import dagger.Provides
 class DataModule {
 
     @Provides
-    fun provideVideoDataSource(context: Context): VideoDataSource =
-        VideoDataSourceImpl(context)
+    fun provideVideoDataSource(): VideoDataSource =
+        VideoDataSourceImpl()
 }

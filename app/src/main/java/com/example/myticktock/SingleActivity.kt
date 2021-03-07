@@ -48,6 +48,7 @@ class SingleActivity : AppCompatActivity(),
     /*
     Auth
      */
+
     override fun navigateToLogin() {
         navController.popBackStack()
     }
@@ -60,11 +61,11 @@ class SingleActivity : AppCompatActivity(),
     Profile navigation
      */
 
-    override fun onClickEditProfile() {
+    override fun navigateToEditProfile() {
         navController.navigate(R.id.editProfileFragment, null, navBuilder.build())
     }
 
-    override fun onClickSettings() {
+    override fun navigateToSettings() {
         navController.navigate(R.id.settingsFragment, null, navBuilder.build())
     }
 
@@ -76,17 +77,11 @@ class SingleActivity : AppCompatActivity(),
         navController.navigate(R.id.recordVideoFragment, null, navBuilder.build())
     }
 
-    override fun navigateToDetailFragment() {
-       // val emailCardDetailTransitionName = getString(R.string.email_card_detail_transition_name)
-      //  val directions = MainFragmentDirections.actionMainFragmentToDetailFragment()
-      //  navController.navigate(directions)//, extras)
-    }
-
     /*
     Settings
      */
 
-    override fun onClickBack() {
+    override fun navigateBack() {
         navController.popBackStack()
     }
 
@@ -98,7 +93,7 @@ class SingleActivity : AppCompatActivity(),
     Video
      */
 
-    override fun onClickBackFromVideo() {
+    override fun navigateBackFromVideo() {
         navController.popBackStack()
     }
 

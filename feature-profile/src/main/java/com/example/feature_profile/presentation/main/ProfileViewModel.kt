@@ -15,7 +15,7 @@ class ProfileViewModel @Inject constructor(private val getTokenUseCase: GetToken
 
     var user: MutableLiveData<UserEntity> = MutableLiveData()
 
-    fun onViewCreated(navigator: ProfileNavigator) {
+    fun loadUserInformation(navigator: ProfileNavigator) {
         this.navigator = navigator
 
         val token = getTokenUseCase()
@@ -30,11 +30,11 @@ class ProfileViewModel @Inject constructor(private val getTokenUseCase: GetToken
         clear()
     }
 
-    fun onClickSettings() {
-        navigator.onClickSettings()
+    fun navigateToSettings() {
+        navigator.navigateToSettings()
     }
 
-    fun onClickEditProfile() {
-        navigator.onClickEditProfile()
+    fun navigateToEditProfile() {
+        navigator.navigateToEditProfile()
     }
 }

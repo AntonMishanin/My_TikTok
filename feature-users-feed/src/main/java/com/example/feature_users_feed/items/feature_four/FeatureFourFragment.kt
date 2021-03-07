@@ -9,6 +9,5 @@ class FeatureFourFragment : Fragment(R.layout.fragment_feature_four) {
     override fun onStart() {
         super.onStart()
         Log.d("TAG", "FeatureFourFragment")
-
     }
 }

@@ -8,7 +8,7 @@
         android:id="@+id/textView_title_splash_fragment"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Splash fragment"
+        android:text="@string/splash_fragment"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

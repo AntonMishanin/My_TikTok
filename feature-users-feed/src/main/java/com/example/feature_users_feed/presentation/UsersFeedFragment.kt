@@ -28,7 +28,6 @@ class UsersFeedFragment : Fragment(R.layout.fragment_news_feed) {
         super.onStart()
 
         viewModel.loadContent()
-
         initView()
         observeViewModel()
     }

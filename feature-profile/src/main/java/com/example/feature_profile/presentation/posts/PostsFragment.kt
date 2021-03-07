@@ -29,11 +29,11 @@ class PostsFragment : Fragment(R.layout.fragment_posts) {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
 
         initView()
-        viewModel.onViewCreated()
+        viewModel.loadPosts()
         observeViewModel()
     }
 

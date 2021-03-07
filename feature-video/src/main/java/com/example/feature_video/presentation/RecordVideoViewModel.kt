@@ -1,22 +1,18 @@
 package com.example.feature_video.presentation
 
-import android.util.Log
 import androidx.lifecycle.ViewModel
-import com.example.feature_video.domain.GetVideoUseCase
 import com.example.feature_video.navigator.VideoNavigator
 import javax.inject.Inject
 
-class RecordVideoViewModel
-@Inject constructor(private val getVideoUseCase: GetVideoUseCase) : ViewModel() {
+class RecordVideoViewModel @Inject constructor() : ViewModel() {
 
     private var navigator: VideoNavigator? = null
 
-    init {
-        val video = getVideoUseCase()
-        Log.d("TAG", "video =$video")
+    fun setNavigator(navigator: VideoNavigator) {
+        this.navigator = navigator
     }
 
-    fun onViewCreated(navigator: VideoNavigator) {
-        this.navigator = navigator
+    fun navigateBack() {
+        navigator?.navigateBackFromVideo()
     }
 }

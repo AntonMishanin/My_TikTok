@@ -14,7 +14,7 @@ class LoginViewModel @Inject constructor(
     private val setTokenUseCase: SetTokenUseCase
 ) : BaseViewModel() {
 
-    val enableLoginButton = MutableLiveData<Boolean>(false)
+    val enableLoginButton = MutableLiveData(false)
 
     private lateinit var navigator: AuthorizationNavigator
 

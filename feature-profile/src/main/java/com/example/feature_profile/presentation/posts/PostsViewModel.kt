@@ -9,7 +9,7 @@ class PostsViewModel @Inject constructor() : ViewModel() {
 
     var state = MutableLiveData(UiState.PROGRESS)
 
-    fun onViewCreated() {
+    fun loadPosts() {
         state.value = UiState.PROGRESS
         //requestData
         state.value = UiState.EMPTY_CONTENT

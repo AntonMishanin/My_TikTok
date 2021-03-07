@@ -21,11 +21,10 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
 
         val navigator = requireActivity() as SplashNavigator
-
-        viewModel.onViewCreated(navigator)
+        viewModel.loadToken(navigator)
     }
 }

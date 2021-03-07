@@ -8,7 +8,6 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import com.example.feature_edit_profile.R
 import com.example.feature_edit_profile.navigator.EditProfileNavigator
 import com.google.android.material.textfield.TextInputLayout
@@ -30,19 +29,14 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
 
         val navigator = requireActivity() as EditProfileNavigator
 
-        viewModel.onViewCreated(navigator)
-
-        userNameView = requireView().findViewById(R.id.user_name_edit_profile)
-        backButton = requireView().findViewById(R.id.button_back)
-        saveButton = requireView().findViewById(R.id.button_save_edit_profile)
-
-        initObservers()
-        initListeners()
+        viewModel.loadUserInformation(navigator)
+        initView()
+        observeViewModel()
     }
 
     override fun onDestroyView() {
@@ -50,7 +44,7 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
         super.onDestroyView()
     }
 
-    private fun initObservers() {
+    private fun observeViewModel() {
         viewModel.user.observe(viewLifecycleOwner) {
             userNameView?.addOnEditTextAttachedListener { layout ->
                 layout.editText?.setText(it.name)
@@ -62,19 +56,19 @@ class EditProfileFragment : Fragment(R.layout.fragment_edit_profile) {
         }
     }
 
-    private fun initListeners() {
+    private fun initView() {
+        userNameView = requireView().findViewById(R.id.user_name_edit_profile)
+        backButton = requireView().findViewById(R.id.button_back)
+        saveButton = requireView().findViewById(R.id.button_save_edit_profile)
+
         userNameView?.addOnEditTextAttachedListener { layout ->
             layout.editText?.addTextChangedListener {
                 viewModel.userNameChanged(it)
             }
         }
 
-        backButton?.setOnClickListener {
-            viewModel.onCLickBackButton()
-        }
+        backButton?.setOnClickListener { viewModel.onCLickBackButton() }
 
-        saveButton?.setOnClickListener {
-            viewModel.onClickSaveButton()
-        }
+        saveButton?.setOnClickListener { viewModel.onClickSaveButton() }
     }
 }

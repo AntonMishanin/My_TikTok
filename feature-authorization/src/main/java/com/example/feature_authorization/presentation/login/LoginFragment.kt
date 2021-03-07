@@ -7,14 +7,12 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import com.example.feature_authorization.R
 import com.example.feature_authorization.navigator.AuthorizationNavigator
 import com.example.shared_utils.showKeyboard
 import com.google.android.material.textfield.TextInputLayout
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
-
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
@@ -29,18 +27,15 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
 
         val navigator = requireActivity() as AuthorizationNavigator
 
         viewModel.onViewCreated(navigator)
-        initListeners()
+        initView()
         showKeyboard(requireContext())
-
-        viewModel.enableLoginButton.observe(viewLifecycleOwner) { enableLoginButton ->
-            loginButton?.isEnabled = enableLoginButton
-        }
+        observeViewModel()
     }
 
     override fun onDestroyView() {
@@ -48,16 +43,18 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         super.onDestroyView()
     }
 
-    private fun initListeners() {
-        val userNameLayout = requireView().findViewById<TextInputLayout>(R.id.editText_user_name_login)
+    private fun initView() {
+        val userNameLayout =
+            requireView().findViewById<TextInputLayout>(R.id.editText_user_name_login)
         userNameLayout.addOnEditTextAttachedListener { layout ->
             layout.editText?.addTextChangedListener {
                 viewModel.enteringUserName(it)
             }
         }
 
-        val password = requireView().findViewById<TextInputLayout>(R.id.editText_user_password_login)
-        password.addOnEditTextAttachedListener {layout->
+        val password =
+            requireView().findViewById<TextInputLayout>(R.id.editText_user_password_login)
+        password.addOnEditTextAttachedListener { layout ->
             layout.editText?.addTextChangedListener {
                 viewModel.enteringPassword(it)
             }
@@ -71,6 +68,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         val registrationView = view?.findViewById<TextView>(R.id.textView_go_to_registration)
         registrationView?.setOnClickListener {
             viewModel.onClickRegistration()
+        }
+    }
+
+    private fun observeViewModel() {
+        viewModel.enableLoginButton.observe(viewLifecycleOwner) { enableLoginButton ->
+            loginButton?.isEnabled = enableLoginButton
         }
     }
 }

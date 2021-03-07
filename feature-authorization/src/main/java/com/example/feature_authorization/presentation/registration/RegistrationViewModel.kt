@@ -18,7 +18,7 @@ class RegistrationViewModel
     private val setTokenUseCase: SetTokenUseCase
 ) : BaseViewModel() {
 
-    val enableRegistrationButton = MutableLiveData<Boolean>(false)
+    val enableRegistrationButton = MutableLiveData(false)
 
     private lateinit var navigator: AuthorizationNavigator
 

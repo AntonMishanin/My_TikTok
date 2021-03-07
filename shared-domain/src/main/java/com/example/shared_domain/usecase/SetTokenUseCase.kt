@@ -5,7 +5,5 @@ import javax.inject.Inject
 
 class SetTokenUseCase @Inject constructor(private val repository: Repository) {
 
-    operator fun invoke(token: Long){
-        repository.setToken(token)
-    }
+    operator fun invoke(token: Long) = repository.setToken(token)
 }

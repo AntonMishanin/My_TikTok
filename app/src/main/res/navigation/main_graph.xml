@@ -21,9 +21,6 @@
         android:name="com.example.feature_bottom_navigation.presentation.MainFragment"
         android:label="MainFragment">
         <action
-            android:id="@+id/action_mainFragment_to_detailFragment"
-            app:destination="@id/detailFragment"/>
-        <action
             android:id="@+id/action_mainFragment_to_settingsFragment"
             app:destination="@id/settingsFragment" />
     </fragment>

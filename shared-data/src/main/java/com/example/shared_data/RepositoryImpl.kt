@@ -7,9 +7,6 @@ import com.example.shared_domain.repository.Repository
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
-import io.reactivex.android.schedulers.AndroidSchedulers
-import io.reactivex.observers.DisposableCompletableObserver
-import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
@@ -38,7 +35,9 @@ class RepositoryImpl @Inject constructor(
     override fun updateUser(user: UserEntity): Completable =
         Completable.fromAction { userDao.updateUser(user) }
 
+    //TODO 07.03.2021: finish it
     override fun deleteUser(user: UserEntity) {
+        /*
         val f = Completable.fromAction {
             userDao.deleteUser(user)
         }
@@ -47,22 +46,21 @@ class RepositoryImpl @Inject constructor(
             .subscribe {
                 (object : DisposableCompletableObserver() {
                     override fun onComplete() {
-                        // Log.d("TAG", "insert onComplete()")
                     }
 
                     override fun onError(e: Throwable) {
-                        //Log.d("TAG", "insert onError ${e.message}")
                     }
                 })
             }
+         */
     }
 
+    //TODO 07.03.2021: finish it
     override fun getAllUsers() {
-        val subscribe = userDao.getAllUsers()
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                // Log.d("TAG", "list size = ${it.size}")
-            }
+        //val subscribe = userDao.getAllUsers()
+        //    .observeOn(AndroidSchedulers.mainThread())
+        //    .subscribe {
+        //    }
     }
 
     override fun getUserById(id: Int): Flowable<UserEntity> = userDao.getUserById(id)

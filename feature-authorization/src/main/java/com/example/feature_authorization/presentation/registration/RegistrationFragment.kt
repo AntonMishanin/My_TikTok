@@ -8,7 +8,6 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import com.example.feature_authorization.navigator.AuthorizationNavigator
 import com.example.feature_authorization.R
 import com.example.shared_utils.showKeyboard
@@ -29,19 +28,15 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
 
         val navigator = requireActivity() as AuthorizationNavigator
 
         viewModel.onViewCreated(navigator)
-
-        initListeners()
+        initView()
         showKeyboard(requireContext())
-
-        viewModel.enableRegistrationButton.observe(viewLifecycleOwner) { enableRegistrationButton ->
-            registrationButton?.isEnabled = enableRegistrationButton
-        }
+        observeViewModel()
     }
 
     override fun onDestroyView() {
@@ -50,7 +45,7 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
 
     }
 
-    private fun initListeners() {
+    private fun initView() {
         val loginView = view?.findViewById<TextView>(R.id.textView_go_to_log_in)
         loginView?.setOnClickListener {
             viewModel.onClickLogin()
@@ -78,6 +73,12 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
             layout.editText?.addTextChangedListener {
                 viewModel.passwordChanged(it)
             }
+        }
+    }
+
+    private fun observeViewModel(){
+        viewModel.enableRegistrationButton.observe(viewLifecycleOwner) { enableRegistrationButton ->
+            registrationButton?.isEnabled = enableRegistrationButton
         }
     }
 }

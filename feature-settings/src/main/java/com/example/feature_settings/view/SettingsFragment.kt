@@ -7,7 +7,6 @@ import android.widget.ProgressBar
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import androidx.recyclerview.widget.RecyclerView
 import com.example.shared_base.UiState
 import com.example.feature_settings.R
@@ -34,12 +33,11 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
 
         val navigator = requireActivity() as SettingsNavigator
-
-        viewModel.onViewCreated(navigator)
+        viewModel.setNavigator(navigator)
         initView()
         observeViewModel()
     }
@@ -55,7 +53,7 @@ class SettingsFragment : Fragment(R.layout.fragment_settings) {
         failView = view?.findViewById(R.id.layout_fail)
 
         val backButton = requireView().findViewById<ImageButton>(R.id.button_back)
-        backButton.setOnClickListener { viewModel.onClickBack() }
+        backButton.setOnClickListener { viewModel.navigateBack() }
     }
 
     private fun observeViewModel() {

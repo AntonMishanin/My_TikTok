@@ -21,16 +21,18 @@ class RecordVideoFragment : Fragment(R.layout.fragment_record_video) {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
 
         val navigator = requireActivity() as VideoNavigator
+        viewModel.setNavigator(navigator)
+        initView()
+    }
 
-        viewModel.onViewCreated(navigator)
-
+    private fun initView(){
         val backButton = requireView().findViewById<Button>(R.id.button_back_from_video)
         backButton.setOnClickListener {
-            navigator.onClickBackFromVideo()
+            viewModel.navigateBack()
         }
     }
 }

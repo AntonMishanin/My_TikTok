@@ -27,7 +27,7 @@ class EditProfileViewModel @Inject constructor(
     private var newUser = UserEntity()
     private lateinit var navigator: EditProfileNavigator
 
-    fun onViewCreated(navigator: EditProfileNavigator) {
+    fun loadUserInformation(navigator: EditProfileNavigator) {
         this.navigator = navigator
 
         val token = getTokenUseCase()
@@ -53,11 +53,9 @@ class EditProfileViewModel @Inject constructor(
             .observeOn(AndroidSchedulers.mainThread())
             .subscribe(object : DisposableCompletableObserver() {
                 override fun onComplete() {
-                    // Log.d("TAG", "insert onComplete()")
                 }
 
                 override fun onError(e: Throwable) {
-                    //Log.d("TAG", "insert onError ${e.message}")
                 }
             })
 

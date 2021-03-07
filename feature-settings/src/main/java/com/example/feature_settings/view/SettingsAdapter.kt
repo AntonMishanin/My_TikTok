@@ -19,30 +19,24 @@ class SettingsAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
 
+        val inflater = LayoutInflater.from(parent.context)
+
         when (viewType) {
             VIEW_TYPE_TITLE -> {
-                val inflater =
-                    LayoutInflater.from(parent.context).inflate(R.layout.item_title, parent, false)
-                return TitleViewHolder(inflater)
+                val view = inflater.inflate(R.layout.item_title, parent, false)
+                return TitleViewHolder(view)
             }
             VIEW_TYPE_LOG_OUT -> {
-                val inflater = LayoutInflater.from(parent.context).inflate(R.layout.item_title, parent, false)
-                return TitleViewHolder(inflater)
+                val view =inflater.inflate(R.layout.item_title, parent, false)
+                return TitleViewHolder(view)
             }
             VIEW_TYPE_DESCRIPTION -> {
-                val inflater =
-                    LayoutInflater.from(parent.context)
-                        .inflate(R.layout.item_description, parent, false)
-                return DescriptionViewHolder(
-                    inflater
-                )
+                val view = inflater.inflate(R.layout.item_description, parent, false)
+                return DescriptionViewHolder(view)
             }
             else -> {
-                val inflater =
-                    LayoutInflater.from(parent.context).inflate(R.layout.item_title, parent, false)
-                return TitleViewHolder(
-                    inflater
-                )
+                val view = inflater.inflate(R.layout.item_title, parent, false)
+                return TitleViewHolder(view)
             }
         }
     }

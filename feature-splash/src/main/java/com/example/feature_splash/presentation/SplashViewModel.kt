@@ -8,7 +8,7 @@ import javax.inject.Inject
 class SplashViewModel
 @Inject constructor(private val getTokenUseCase: GetTokenUseCase) : ViewModel() {
 
-    fun onViewCreated(
+    fun loadToken(
         navigator: SplashNavigator
     ) {
         val token = getTokenUseCase()

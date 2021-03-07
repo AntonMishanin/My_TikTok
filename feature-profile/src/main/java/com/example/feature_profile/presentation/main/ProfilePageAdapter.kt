@@ -6,6 +6,8 @@ import androidx.lifecycle.Lifecycle
 import androidx.viewpager2.adapter.FragmentStateAdapter
 import com.example.feature_profile.presentation.fake.FakeFragment
 import com.example.feature_profile.presentation.posts.PostsFragment
+import com.example.feature_profile.utils.Constants.Companion.VIEW_TYPE_FAKE
+import com.example.feature_profile.utils.Constants.Companion.VIEW_TYPE_POSTS
 
 class ProfilePageAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle) :
     FragmentStateAdapter(fragmentManager, lifecycle) {
@@ -14,10 +16,10 @@ class ProfilePageAdapter(fragmentManager: FragmentManager, lifecycle: Lifecycle)
 
     override fun createFragment(position: Int): Fragment {
         return when (position) {
-            0 -> {
+            VIEW_TYPE_POSTS -> {
                 PostsFragment()
             }
-            1 -> {
+            VIEW_TYPE_FAKE -> {
                 FakeFragment()
             }
             else -> {

@@ -6,6 +6,7 @@ import com.example.shared_data.RepositoryImpl
 import com.example.shared_data.database.UserDao
 import com.example.shared_data.database.UserDatabase
 import com.example.shared_data.preferences.SharedPref
+import com.example.shared_data.utils.Constants.Companion.SHARED_PREFERENCES_NAME
 import com.example.shared_domain.repository.Repository
 import dagger.Module
 import dagger.Provides
@@ -23,7 +24,7 @@ class DataModule {
 
     @Provides
     fun provideSharedPreferences(context: Context): SharedPreferences =
-        context.getSharedPreferences("Shared_preferences_token", Context.MODE_PRIVATE)
+        context.getSharedPreferences(SHARED_PREFERENCES_NAME, Context.MODE_PRIVATE)
 
     @Provides
     fun provideUserDao(userDatabase: UserDatabase): UserDao = userDatabase.getUserDao()

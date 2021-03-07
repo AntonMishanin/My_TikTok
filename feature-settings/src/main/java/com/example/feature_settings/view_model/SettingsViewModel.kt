@@ -42,7 +42,7 @@ class SettingsViewModel @Inject constructor(
         )
     }
 
-    fun onViewCreated(navigator: SettingsNavigator) {
+    fun setNavigator(navigator: SettingsNavigator) {
         this.navigator = navigator
     }
 
@@ -59,7 +59,7 @@ class SettingsViewModel @Inject constructor(
         navigator.onLogOut()
     }
 
-    fun onClickBack() {
-        navigator.onClickBack()
+    fun navigateBack() {
+        navigator.navigateBack()
     }
 }
