@@ -12,20 +12,20 @@
           <set>
             <option value="$PROJECT_DIR$" />
             <option value="$PROJECT_DIR$/app" />
-            <option value="$PROJECT_DIR$/authorization-feature" />
-            <option value="$PROJECT_DIR$/base" />
-            <option value="$PROJECT_DIR$/bottom-navigation-feature" />
-            <option value="$PROJECT_DIR$/data" />
-            <option value="$PROJECT_DIR$/domain" />
+            <option value="$PROJECT_DIR$/feature-authorization" />
+            <option value="$PROJECT_DIR$/feature-bottom-navigation" />
             <option value="$PROJECT_DIR$/feature-edit-profile" />
             <option value="$PROJECT_DIR$/feature-profile" />
             <option value="$PROJECT_DIR$/feature-settings" />
+            <option value="$PROJECT_DIR$/feature-splash" />
             <option value="$PROJECT_DIR$/feature-users-feed" />
+            <option value="$PROJECT_DIR$/feature-video" />
             <option value="$PROJECT_DIR$/news-feed-feature" />
             <option value="$PROJECT_DIR$/profile-feature" />
-            <option value="$PROJECT_DIR$/splash-feature" />
-            <option value="$PROJECT_DIR$/utils" />
-            <option value="$PROJECT_DIR$/video-feature" />
+            <option value="$PROJECT_DIR$/shared-base" />
+            <option value="$PROJECT_DIR$/shared-data" />
+            <option value="$PROJECT_DIR$/shared-domain" />
+            <option value="$PROJECT_DIR$/shared-utils" />
           </set>
         </option>
         <option name="resolveModulePerSourceSet" value="false" />

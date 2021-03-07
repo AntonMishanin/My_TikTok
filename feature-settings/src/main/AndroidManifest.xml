@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.settings_feature">
+<manifest
+    package="com.example.feature_settings">
 
 </manifest>

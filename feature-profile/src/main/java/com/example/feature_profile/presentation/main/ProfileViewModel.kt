@@ -1,10 +1,10 @@
 package com.example.feature_profile.presentation.main
 
 import androidx.lifecycle.MutableLiveData
-import com.example.base.mvvm.BaseViewModel
-import com.example.domain.entity.UserEntity
-import com.example.domain.usecase.GetTokenUseCase
-import com.example.domain.usecase.GetUserByIdUseCase
+import com.example.shared_base.mvvm.BaseViewModel
+import com.example.shared_domain.entity.UserEntity
+import com.example.shared_domain.usecase.GetTokenUseCase
+import com.example.shared_domain.usecase.GetUserByIdUseCase
 import com.example.feature_profile.navigator.ProfileNavigator
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
@@ -15,7 +15,7 @@ class ProfileViewModel @Inject constructor(private val getTokenUseCase: GetToken
 
     var user: MutableLiveData<UserEntity> = MutableLiveData()
 
-    fun onViewCreated(navigator: ProfileNavigator) {
+    fun loadUserInformation(navigator: ProfileNavigator) {
         this.navigator = navigator
 
         val token = getTokenUseCase()
@@ -30,11 +30,11 @@ class ProfileViewModel @Inject constructor(private val getTokenUseCase: GetToken
         clear()
     }
 
-    fun onClickSettings() {
-        navigator.onClickSettings()
+    fun navigateToSettings() {
+        navigator.navigateToSettings()
     }
 
-    fun onClickEditProfile() {
-        navigator.onClickEditProfile()
+    fun navigateToEditProfile() {
+        navigator.navigateToEditProfile()
     }
 }

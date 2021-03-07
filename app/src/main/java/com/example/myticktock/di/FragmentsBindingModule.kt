@@ -1,14 +1,14 @@
 package com.example.myticktock.di
 
-import com.example.authorization_feature.presentation.login.LoginFragment
-import com.example.authorization_feature.presentation.registration.RegistrationFragment
+import com.example.feature_authorization.presentation.login.LoginFragment
+import com.example.feature_authorization.presentation.registration.RegistrationFragment
 import com.example.feature_users_feed.presentation.UsersFeedFragment
 import com.example.feature_profile.presentation.main.ProfileFragment
-import com.example.edit_profile_feature.presentation.EditProfileFragment
+import com.example.feature_edit_profile.presentation.EditProfileFragment
 import com.example.feature_profile.presentation.posts.PostsFragment
-import com.example.settings_feature.view.SettingsFragment
-import com.example.splash_feature.presentation.SplashFragment
-import com.example.video_feature.presentation.RecordVideoFragment
+import com.example.feature_settings.view.SettingsFragment
+import com.example.feature_splash.presentation.SplashFragment
+import com.example.feature_video.presentation.RecordVideoFragment
 import dagger.Module
 import dagger.android.ContributesAndroidInjector
 

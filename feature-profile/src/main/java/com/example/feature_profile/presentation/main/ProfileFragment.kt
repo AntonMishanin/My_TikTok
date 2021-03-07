@@ -7,7 +7,6 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import androidx.lifecycle.observe
 import androidx.viewpager2.widget.ViewPager2
 import com.example.feature_profile.R
 import com.example.feature_profile.navigator.ProfileNavigator
@@ -36,34 +35,40 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onCreate(savedInstanceState)
     }
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
 
         val navigator = requireActivity() as ProfileNavigator
 
-        viewModel.onViewCreated(navigator)
+        viewModel.loadUserInformation(navigator)
 
-        val userNameView = requireView().findViewById<TextView>(R.id.textView_user_name)
-        viewModel.user.observe(viewLifecycleOwner) {
-            userNameView.text = it.name
-        }
-
-        val settingsButton = requireView().findViewById<ImageButton>(R.id.imageButton_settings_profile_toolbar)
-        settingsButton.setOnClickListener {
-            viewModel.onClickSettings()
-        }
-
-        val editProfileButton = requireView().findViewById<Button>(R.id.button_edit_profile)
-        editProfileButton.setOnClickListener {
-            viewModel.onClickEditProfile()
-        }
-
+        initView()
+        observeViewModel()
         initTabs()
     }
 
     override fun onDestroyView() {
         viewModel.onDestroyView()
         super.onDestroyView()
+    }
+
+    private fun initView(){
+        val settingsButton = requireView().findViewById<ImageButton>(R.id.imageButton_settings_profile_toolbar)
+        settingsButton.setOnClickListener {
+            viewModel.navigateToSettings()
+        }
+
+        val editProfileButton = requireView().findViewById<Button>(R.id.button_edit_profile)
+        editProfileButton.setOnClickListener {
+            viewModel.navigateToEditProfile()
+        }
+    }
+
+    private fun observeViewModel(){
+        val userNameView = requireView().findViewById<TextView>(R.id.textView_user_name)
+        viewModel.user.observe(viewLifecycleOwner) {
+            userNameView.text = it.name
+        }
     }
 
     private fun initTabs(){

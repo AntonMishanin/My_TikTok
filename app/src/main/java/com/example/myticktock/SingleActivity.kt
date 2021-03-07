@@ -5,13 +5,13 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
-import com.example.authorization_feature.navigator.AuthorizationNavigator
-import com.example.bottom_navigation_feature.navigator.BottomNavigator
-import com.example.edit_profile_feature.navigator.EditProfileNavigator
+import com.example.feature_authorization.navigator.AuthorizationNavigator
+import com.example.feature_bottom_navigation.navigator.BottomNavigator
+import com.example.feature_edit_profile.navigator.EditProfileNavigator
 import com.example.feature_profile.navigator.ProfileNavigator
-import com.example.settings_feature.navigator.SettingsNavigator
-import com.example.splash_feature.navigation.SplashNavigator
-import com.example.video_feature.navigator.VideoNavigator
+import com.example.feature_settings.navigator.SettingsNavigator
+import com.example.feature_splash.navigation.SplashNavigator
+import com.example.feature_video.navigator.VideoNavigator
 
 class SingleActivity : AppCompatActivity(),
     SplashNavigator,
@@ -48,6 +48,7 @@ class SingleActivity : AppCompatActivity(),
     /*
     Auth
      */
+
     override fun navigateToLogin() {
         navController.popBackStack()
     }
@@ -60,11 +61,11 @@ class SingleActivity : AppCompatActivity(),
     Profile navigation
      */
 
-    override fun onClickEditProfile() {
+    override fun navigateToEditProfile() {
         navController.navigate(R.id.editProfileFragment, null, navBuilder.build())
     }
 
-    override fun onClickSettings() {
+    override fun navigateToSettings() {
         navController.navigate(R.id.settingsFragment, null, navBuilder.build())
     }
 
@@ -76,17 +77,11 @@ class SingleActivity : AppCompatActivity(),
         navController.navigate(R.id.recordVideoFragment, null, navBuilder.build())
     }
 
-    override fun navigateToDetailFragment() {
-       // val emailCardDetailTransitionName = getString(R.string.email_card_detail_transition_name)
-      //  val directions = MainFragmentDirections.actionMainFragmentToDetailFragment()
-      //  navController.navigate(directions)//, extras)
-    }
-
     /*
     Settings
      */
 
-    override fun onClickBack() {
+    override fun navigateBack() {
         navController.popBackStack()
     }
 
@@ -98,7 +93,7 @@ class SingleActivity : AppCompatActivity(),
     Video
      */
 
-    override fun onClickBackFromVideo() {
+    override fun navigateBackFromVideo() {
         navController.popBackStack()
     }
 
