@@ -7,7 +7,7 @@
     <TextView
         android:layout_width="0dp"
         android:layout_height="100dp"
-        android:background="@android:color/holo_blue_dark"
+        android:background="@android:color/holo_blue_bright"
         android:gravity="center"
         android:text="@string/some_feature"
         app:layout_constraintBottom_toBottomOf="parent"

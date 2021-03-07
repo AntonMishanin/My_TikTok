@@ -2,13 +2,10 @@ package com.example.feature_users_feed.presentation
 
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
-import com.example.domain.usecase.GetUserByNameUseCase
 import com.example.feature_users_feed.domain.entity.ContentEntity
 import javax.inject.Inject
 
-class NewsFeedViewModel @Inject constructor(
-    private val getUserByNameUseCase: GetUserByNameUseCase
-    ) : ViewModel() {
+class UsersFeedViewModel @Inject constructor() : ViewModel() {
 
     val content = MutableLiveData<List<ContentEntity>>()
 

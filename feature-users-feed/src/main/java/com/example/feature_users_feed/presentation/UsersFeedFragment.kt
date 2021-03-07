@@ -7,16 +7,17 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.example.feature_users_feed.R
+import com.example.feature_users_feed.domain.entity.ContentEntity
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class NewsFeedFragment : Fragment(R.layout.fragment_news_feed) {
+class UsersFeedFragment : Fragment(R.layout.fragment_news_feed) {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
-    private val viewModel: NewsFeedViewModel by viewModels { viewModelFactory }
+    private val viewModel: UsersFeedViewModel by viewModels { viewModelFactory }
 
-    private lateinit var adapter: NewsAdapter
+    private lateinit var adapter: UsersFeedAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
@@ -33,17 +34,18 @@ class NewsFeedFragment : Fragment(R.layout.fragment_news_feed) {
     }
 
     private fun initView() {
-        adapter = NewsAdapter {
+        adapter = UsersFeedAdapter(requireActivity().supportFragmentManager)
 
-        }
-
-        val recyclerViewOrderDetail =
-            view?.findViewById<RecyclerView>(R.id.recycler_view_users_feed)
-        recyclerViewOrderDetail?.layoutManager = LinearLayoutManager(requireContext())
-        recyclerViewOrderDetail?.adapter = adapter
+        val usersFeedRecyclerView = view?.findViewById<RecyclerView>(R.id.recycler_view_users_feed)
+        usersFeedRecyclerView?.layoutManager = LinearLayoutManager(requireContext())
+        usersFeedRecyclerView?.adapter = adapter
     }
 
     private fun observeViewModel() {
-        viewModel.content.observe(viewLifecycleOwner, adapter::setListCurrency)
+        viewModel.content.observe(viewLifecycleOwner, ::onChangeContent)
+    }
+
+    private fun onChangeContent(content: List<ContentEntity>) {
+        adapter.content = content
     }
 }
