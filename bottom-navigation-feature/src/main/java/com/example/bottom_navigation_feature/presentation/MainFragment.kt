@@ -1,6 +1,5 @@
-package com.example.bottom_navigation_feature.presentation.main
+package com.example.bottom_navigation_feature.presentation
 
-import android.os.Bundle
 import androidx.core.view.ViewCompat.requireViewById
 import androidx.fragment.app.Fragment
 import androidx.navigation.NavController
@@ -15,9 +14,12 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     private lateinit var bottomNavigationView: BottomNavigationView
     private lateinit var navController: NavController
 
-    override fun onActivityCreated(savedInstanceState: Bundle?) {
-        super.onActivityCreated(savedInstanceState)
+    override fun onStart() {
+        super.onStart()
+        initNavigation()
+    }
 
+    private fun initNavigation(){
         val navigator = requireActivity() as BottomNavigator
 
         bottomNavigationView = requireViewById(requireView(), R.id.bottom_navigation_view)
