@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.widget.Button
 import android.widget.ImageButton
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.fragment.app.Fragment
@@ -48,27 +49,29 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
     private fun initView() {
         val loginView = view?.findViewById<TextView>(R.id.textView_go_to_log_in)
         loginView?.setOnClickListener {
-            viewModel.onClickLogin()
+            viewModel.goToLogin()
         }
 
         val backView = view?.findViewById<ImageButton>(R.id.imageButton_arrow_back)
-        backView?.setOnClickListener{
-            viewModel.onClickLogin()
+        backView?.setOnClickListener {
+            viewModel.goToLogin()
         }
 
         registrationButton = view?.findViewById(R.id.button_registration)
         registrationButton?.setOnClickListener {
-            viewModel.onClickRegistration()
+            viewModel.registerUser(resources)
         }
 
-        val inputUserName = requireView().findViewById<TextInputLayout>(R.id.editText_input_user_name)
+        val inputUserName =
+            requireView().findViewById<TextInputLayout>(R.id.editText_input_user_name)
         inputUserName.addOnEditTextAttachedListener { layout ->
             layout.editText?.addTextChangedListener {
                 viewModel.userNameChanged(it)
             }
         }
 
-        val inputPassword = requireView().findViewById<TextInputLayout>(R.id.editText_input_user_password)
+        val inputPassword =
+            requireView().findViewById<TextInputLayout>(R.id.editText_input_user_password)
         inputPassword.addOnEditTextAttachedListener { layout ->
             layout.editText?.addTextChangedListener {
                 viewModel.passwordChanged(it)
@@ -76,9 +79,14 @@ class RegistrationFragment : Fragment(R.layout.fragment_registration) {
         }
     }
 
-    private fun observeViewModel(){
+    private fun observeViewModel() {
         viewModel.enableRegistrationButton.observe(viewLifecycleOwner) { enableRegistrationButton ->
             registrationButton?.isEnabled = enableRegistrationButton
         }
+
+        viewModel.showMessageFailValidation.observe(viewLifecycleOwner) { showMessage(it) }
     }
+
+    private fun showMessage(message: String) =
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
 }

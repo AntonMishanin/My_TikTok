@@ -3,6 +3,7 @@ package com.example.feature_authorization.presentation.login
 import android.os.Bundle
 import android.widget.Button
 import android.widget.TextView
+import android.widget.Toast
 import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -62,12 +63,12 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         loginButton = view?.findViewById(R.id.button_login)
         loginButton?.setOnClickListener {
-            viewModel.onClickLogin()
+            viewModel.loginUser(resources)
         }
 
         val registrationView = view?.findViewById<TextView>(R.id.textView_go_to_registration)
         registrationView?.setOnClickListener {
-            viewModel.onClickRegistration()
+            viewModel.goToRegistration()
         }
     }
 
@@ -75,5 +76,10 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         viewModel.enableLoginButton.observe(viewLifecycleOwner) { enableLoginButton ->
             loginButton?.isEnabled = enableLoginButton
         }
+
+        viewModel.showMessageFailLogin.observe(viewLifecycleOwner) { showMessage(it) }
     }
+
+    private fun showMessage(message: String) =
+        Toast.makeText(requireContext(), message, Toast.LENGTH_LONG).show()
 }
