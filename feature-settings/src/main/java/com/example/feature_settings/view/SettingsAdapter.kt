@@ -27,7 +27,7 @@ class SettingsAdapter(
                 return TitleViewHolder(view)
             }
             VIEW_TYPE_LOG_OUT -> {
-                val view =inflater.inflate(R.layout.item_title, parent, false)
+                val view = inflater.inflate(R.layout.item_title, parent, false)
                 return TitleViewHolder(view)
             }
             VIEW_TYPE_DESCRIPTION -> {
@@ -41,9 +41,7 @@ class SettingsAdapter(
         }
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return content[position].viewType
-    }
+    override fun getItemViewType(position: Int): Int = content[position].viewType
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
 

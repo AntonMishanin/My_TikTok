@@ -26,11 +26,11 @@ interface Repository {
 
     fun updateUser(user: UserEntity): Completable
 
-    fun deleteUser(user: UserEntity)
+    fun deleteUser(user: UserEntity): Completable
 
     fun getAllUsers()
 
     fun getUserById(id: Int): Flowable<UserEntity>
 
-    fun getUserByName(userName: String): Flowable<UserEntity>
+    fun getUserByName(userName: String): Single<UserEntity>
 }
