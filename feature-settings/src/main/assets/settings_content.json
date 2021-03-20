@@ -50,5 +50,9 @@
   {
     "view_type": 2,
     "text": "Log out"
+  },
+  {
+    "view_type": 3,
+    "text": "Delete account"
   }
 ]

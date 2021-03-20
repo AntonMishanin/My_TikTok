@@ -66,7 +66,8 @@ class RegistrationViewModel
 
     private fun createNewUser() {
         add(
-            insertUserUseCase(user).subscribeOn(Schedulers.io())
+            insertUserUseCase(user)
+                .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribeWith(object : DisposableSingleObserver<Long>() {
                     override fun onSuccess(t: Long) {
@@ -75,9 +76,9 @@ class RegistrationViewModel
                     }
 
                     override fun onError(e: Throwable) {
+                        e.printStackTrace()
                     }
                 })
         )
     }
-
 }
