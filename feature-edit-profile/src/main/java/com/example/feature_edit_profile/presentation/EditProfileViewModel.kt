@@ -39,9 +39,7 @@ class EditProfileViewModel @Inject constructor(
             })
     }
 
-    fun onDestroyView() {
-        clear()
-    }
+    fun onDestroyView() = clear()
 
     fun userNameChanged(inputUserName: Editable?) {
         newUser.name = inputUserName.toString()
@@ -62,7 +60,5 @@ class EditProfileViewModel @Inject constructor(
         saveEvent("Saved success")
     }
 
-    fun onCLickBackButton() {
-        navigator.onClickBackFromEditProfile()
-    }
+    fun onCLickBackButton() = navigator.onClickBackFromEditProfile()
 }

@@ -92,7 +92,5 @@ class SettingsViewModel @Inject constructor(
         add(disposable)
     }
 
-    fun navigateBack() {
-        navigator.navigateBack()
-    }
+    fun navigateBack() = navigator.navigateBack()
 }

@@ -30,29 +30,23 @@ class LoginViewModel @Inject constructor(
         this.navigator = navigator
     }
 
-    fun onDestroyView() {
-        clear()
-    }
+    fun onDestroyView() = clear()
 
-    fun loginUser(resources: Resources) {
-        add(
-            getUserByNameUseCase(userName)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe({
-                    val token = it.id?.toLong() ?: 0L
-                    setTokenUseCase(token)
-                    navigator.navigateToProfile()
-                }, {
-                    it.printStackTrace()
-                    showMessageFailLogin(resources.getString(R.string.fail_login))
-                })
-        )
-    }
+    fun loginUser(resources: Resources) = add(
+        getUserByNameUseCase(userName)
+            .subscribeOn(Schedulers.io())
+            .observeOn(AndroidSchedulers.mainThread())
+            .subscribe({
+                val token = it.id?.toLong() ?: 0L
+                setTokenUseCase(token)
+                navigator.navigateToProfile()
+            }, {
+                it.printStackTrace()
+                showMessageFailLogin(resources.getString(R.string.fail_login))
+            })
+    )
 
-    fun goToRegistration() {
-        navigator.navigateToRegistration()
-    }
+    fun goToRegistration() = navigator.navigateToRegistration()
 
     fun enteringUserName(inputUserName: Editable?) {
         userName = inputUserName.toString()

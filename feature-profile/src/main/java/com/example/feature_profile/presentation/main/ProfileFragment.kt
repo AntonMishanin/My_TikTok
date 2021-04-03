@@ -1,38 +1,46 @@
 package com.example.feature_profile.presentation.main
 
 import android.os.Bundle
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.TextView
+import android.view.LayoutInflater
+import android.view.View
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
-import com.example.feature_profile.R
+import com.example.feature_profile.databinding.FragmentProfileBinding
 import com.example.feature_profile.navigator.ProfileNavigator
 import com.google.android.material.tabs.TabLayout
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class ProfileFragment : Fragment(R.layout.fragment_profile) {
+class ProfileFragment : Fragment() {
 
     @Inject
     lateinit var viewModelFactory: ViewModelProvider.Factory
     private val viewModel: ProfileViewModel by viewModels { viewModelFactory }
 
-    private var viewPager: ViewPager2? = null
-    private var tabLayout: TabLayout? = null
+    private var binding: FragmentProfileBinding? = null
 
     private val pageChangeCallback = object : ViewPager2.OnPageChangeCallback() {
         override fun onPageSelected(position: Int) {
             super.onPageSelected(position)
-            tabLayout?.selectTab(tabLayout?.getTabAt(position))
+            binding?.tabLayout?.selectTab(binding?.tabLayout?.getTabAt(position))
         }
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onCreateView(
+        inflater: LayoutInflater,
+        container: ViewGroup?,
+        savedInstanceState: Bundle?
+    ): View? {
+        binding = FragmentProfileBinding.inflate(layoutInflater)
+        return binding?.root
     }
 
     override fun onStart() {
@@ -52,37 +60,33 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
         super.onDestroyView()
     }
 
-    private fun initView(){
-        val settingsButton = requireView().findViewById<ImageButton>(R.id.imageButton_settings_profile_toolbar)
-        settingsButton.setOnClickListener {
-            viewModel.navigateToSettings()
-        }
-
-        val editProfileButton = requireView().findViewById<Button>(R.id.button_edit_profile)
-        editProfileButton.setOnClickListener {
-            viewModel.navigateToEditProfile()
-        }
+    override fun onDestroy() {
+        super.onDestroy()
+        binding = null
     }
 
-    private fun observeViewModel(){
-        val userNameView = requireView().findViewById<TextView>(R.id.textView_user_name)
+    private fun initView() {
+        binding?.toolbarProfile?.settings?.setOnClickListener { viewModel.navigateToSettings() }
+        binding?.layoutUserInfo?.editProfile?.setOnClickListener { viewModel.navigateToEditProfile() }
+    }
+
+    private fun observeViewModel() {
         viewModel.user.observe(viewLifecycleOwner) {
-            userNameView.text = it.name
+            binding?.layoutUserInfo?.userName?.text = it.name
         }
     }
 
-    private fun initTabs(){
-        tabLayout = view?.findViewById(R.id.tab_layout_new_feed)
-        val firstTab = tabLayout?.newTab()?.setText("Posts")
+    private fun initTabs() {
+        val firstTab = binding?.tabLayout?.newTab()?.setText("Posts")
         if (firstTab != null) {
-            tabLayout?.addTab(firstTab)
+            binding?.tabLayout?.addTab(firstTab)
         }
-        val secondTab = tabLayout?.newTab()?.setText("Fake")
+        val secondTab = binding?.tabLayout?.newTab()?.setText("Fake")
         if (secondTab != null) {
-            tabLayout?.addTab(secondTab)
+            binding?.tabLayout?.addTab(secondTab)
         }
 
-        tabLayout?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
+        binding?.tabLayout?.addOnTabSelectedListener(object : TabLayout.OnTabSelectedListener {
             override fun onTabReselected(tab: TabLayout.Tab?) {
 
             }
@@ -92,13 +96,12 @@ class ProfileFragment : Fragment(R.layout.fragment_profile) {
             }
 
             override fun onTabSelected(tab: TabLayout.Tab?) {
-                viewPager?.currentItem = tab?.position?:0
+                binding?.viewPager?.currentItem = tab?.position ?: 0
             }
         })
 
         val pagerAdapter = ProfilePageAdapter(requireActivity().supportFragmentManager, lifecycle)
-        viewPager = view?.findViewById(R.id.view_pager_new_feed)
-        viewPager?.adapter = pagerAdapter
-        viewPager?.registerOnPageChangeCallback(pageChangeCallback)
+        binding?.viewPager?.adapter = pagerAdapter
+        binding?.viewPager?.registerOnPageChangeCallback(pageChangeCallback)
     }
 }

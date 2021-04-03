@@ -12,7 +12,5 @@ class RecordVideoViewModel @Inject constructor() : ViewModel() {
         this.navigator = navigator
     }
 
-    fun navigateBack() {
-        navigator?.navigateBackFromVideo()
-    }
+    fun navigateBack() = navigator?.navigateBackFromVideo()
 }
