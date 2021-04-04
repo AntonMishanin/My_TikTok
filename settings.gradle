@@ -1,3 +1,4 @@
+include ':shared-resources'
 include ':feature-users-feed'
 include ':feature-profile'
 include ':shared-utils'
