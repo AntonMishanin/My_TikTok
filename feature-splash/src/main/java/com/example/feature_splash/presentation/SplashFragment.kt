@@ -1,9 +1,12 @@
 package com.example.feature_splash.presentation
 
+import android.graphics.BitmapFactory
 import android.os.Bundle
+import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
+import com.example.feature_splash.MyView
 import com.example.feature_splash.R
 import com.example.feature_splash.navigation.SplashNavigator
 import dagger.android.support.AndroidSupportInjection
@@ -26,5 +29,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
 
         val navigator = requireActivity() as SplashNavigator
         viewModel.loadToken(navigator)
+
+        val myView = view?.findViewById<MyView>(R.id.my_view)
     }
 }

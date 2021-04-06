@@ -14,9 +14,9 @@ class SplashViewModel
         val token = getTokenUseCase()
 
         if (token == -1L) {
-            navigator.navigateToAuthorization()
+          //  navigator.navigateToAuthorization()
         } else {
-            navigator.navigateToProfile()
+          //  navigator.navigateToProfile()
         }
     }
 }
