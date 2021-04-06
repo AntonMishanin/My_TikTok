@@ -9,9 +9,9 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.viewModels
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
-import com.example.feature_authorization.navigator.AuthorizationNavigator
-import com.example.feature_authorization.R
 import com.example.feature_authorization.databinding.FragmentRegistrationBinding
+import com.example.feature_authorization.navigator.AuthorizationNavigator
+import com.example.shared_base.Navigator
 import com.example.shared_utils.showKeyboard
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -41,7 +41,7 @@ class RegistrationFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        val navigator = requireActivity() as AuthorizationNavigator
+        val navigator = (requireActivity() as Navigator).provideNavigator() as AuthorizationNavigator
 
         viewModel.onViewCreated(navigator)
         initView()

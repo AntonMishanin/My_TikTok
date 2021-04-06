@@ -5,6 +5,7 @@ import android.text.Editable
 import androidx.lifecycle.MutableLiveData
 import com.example.feature_authorization.R
 import com.example.feature_authorization.navigator.AuthorizationNavigator
+import com.example.shared_base.Navigator
 import com.example.shared_base.mvvm.BaseViewModel
 import com.example.shared_domain.entity.UserEntity
 import com.example.shared_domain.usecase.InsertUserUseCase

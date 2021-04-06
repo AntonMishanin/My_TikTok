@@ -5,23 +5,24 @@ import android.os.Bundle
 import androidx.navigation.NavController
 import androidx.navigation.NavOptions
 import androidx.navigation.findNavController
-import com.example.feature_authorization.navigator.AuthorizationNavigator
 import com.example.feature_bottom_navigation.navigator.BottomNavigator
 import com.example.feature_edit_profile.navigator.EditProfileNavigator
 import com.example.feature_profile.navigator.ProfileNavigator
 import com.example.feature_settings.navigator.SettingsNavigator
 import com.example.feature_splash.navigation.SplashNavigator
 import com.example.feature_video.navigator.VideoNavigator
+import com.example.shared_base.Navigator
 
 class SingleActivity : AppCompatActivity(),
     SplashNavigator,
-    AuthorizationNavigator,
     BottomNavigator, SettingsNavigator,
-    VideoNavigator, EditProfileNavigator, ProfileNavigator {
+    VideoNavigator, EditProfileNavigator, ProfileNavigator, Navigator {
 
     private lateinit var navController: NavController
 
     private lateinit var navBuilder: NavOptions.Builder
+
+    private lateinit var navigator: NavigatorImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -31,7 +32,11 @@ class SingleActivity : AppCompatActivity(),
         navBuilder = NavOptions.Builder()
         navBuilder.setEnterAnim(R.anim.slide_left).setExitAnim(R.anim.wait)
             .setPopEnterAnim(R.anim.slide_left).setPopExitAnim(R.anim.wait)
+
+        navigator = NavigatorImpl(navController)
     }
+
+    override fun provideNavigator(): Navigator = navigator
 
     /*
     Splash
@@ -43,18 +48,6 @@ class SingleActivity : AppCompatActivity(),
 
     override fun navigateToProfile() {
         navController.navigate(R.id.mainFragment, null, navBuilder.build())
-    }
-
-    /*
-    Auth
-     */
-
-    override fun navigateToLogin() {
-        navController.popBackStack()
-    }
-
-    override fun navigateToRegistration() {
-        navController.navigate(R.id.registrationFragment, null, navBuilder.build())
     }
 
     /*

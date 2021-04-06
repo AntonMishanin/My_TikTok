@@ -1,6 +1,8 @@
 package com.example.feature_authorization.navigator
 
-interface AuthorizationNavigator {
+import com.example.shared_base.Navigator
+
+interface AuthorizationNavigator: Navigator {
 
     fun navigateToLogin()
 
