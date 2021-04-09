@@ -6,15 +6,17 @@ import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
 import com.example.feature_splash.R
 import com.example.feature_splash.navigation.SplashNavigator
+import com.example.shared_base.NavigatorProvider
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
-class SplashFragment : Fragment(R.layout.fragment_splash) {
 
-   @Inject
-   lateinit var viewModelFactory: ViewModelProvider.Factory
+class SplashFragment : Fragment(R.layout.fragment_splash){
 
-   private val viewModel: SplashViewModel by viewModels { viewModelFactory }
+    @Inject
+    lateinit var viewModelFactory: ViewModelProvider.Factory
+
+    private val viewModel: SplashViewModel by viewModels { viewModelFactory }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         AndroidSupportInjection.inject(this)
@@ -24,7 +26,7 @@ class SplashFragment : Fragment(R.layout.fragment_splash) {
     override fun onStart() {
         super.onStart()
 
-        val navigator = requireActivity() as SplashNavigator
-        viewModel.loadToken(navigator)
+        val navigator = (requireActivity() as NavigatorProvider).provideNavigator() as SplashNavigator
+        viewModel.checkToken(navigator)
     }
 }

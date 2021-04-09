@@ -6,8 +6,8 @@
     android:layout_height="match_parent">
 
     <Button
-        style="@style/Widget.App.Button.OutlinedButton"
         android:id="@+id/button_registration"
+        style="@style/Widget.App.Button.OutlinedButton"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -18,16 +18,16 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText_input_user_password"
+        app:layout_constraintTop_toBottomOf="@+id/input_field_user_password"
         app:layout_constraintVertical_bias="0.0" />
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editText_input_user_name"
+        android:id="@+id/input_field_user_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginEnd="16dp"
-        app:layout_constraintBottom_toTopOf="@+id/editText_input_user_password"
+        app:layout_constraintBottom_toTopOf="@+id/input_field_user_password"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -42,7 +42,7 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/editText_input_user_password"
+        android:id="@+id/input_field_user_password"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
@@ -66,7 +66,6 @@
         android:id="@+id/textView_registration_title"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
         android:text="@string/new_account"
         android:textColor="@android:color/black"
         android:textSize="40sp"
@@ -75,11 +74,11 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageButton_arrow_back"
+        app:layout_constraintTop_toBottomOf="@+id/back_arrow"
         app:layout_constraintVertical_bias="0.0" />
 
     <ImageButton
-        android:id="@+id/imageButton_arrow_back"
+        android:id="@+id/back_arrow"
         android:layout_width="50dp"
         android:layout_height="50dp"
         android:background="?attr/selectableItemBackgroundBorderless"
@@ -95,7 +94,7 @@
         tools:ignore="ContentDescription" />
 
     <TextView
-        android:id="@+id/textView_go_to_log_in"
+        android:id="@+id/go_to_log_in"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="16dp"
@@ -113,9 +112,9 @@
         android:layout_height="wrap_content"
         android:text="@string/not_the_first_time_here"
         android:textColor="@android:color/darker_gray"
-        app:layout_constraintBottom_toTopOf="@+id/textView_go_to_log_in"
-        app:layout_constraintEnd_toEndOf="@+id/textView_go_to_log_in"
-        app:layout_constraintStart_toStartOf="@+id/textView_go_to_log_in"
+        app:layout_constraintBottom_toTopOf="@+id/go_to_log_in"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_bias="1.0" />
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -1,8 +1,10 @@
 package com.example.feature_profile.navigator
 
-interface ProfileNavigator {
+import com.example.shared_base.Navigator
 
-    fun navigateToEditProfile()
+interface ProfileNavigator : Navigator {
 
-    fun navigateToSettings()
+    fun goToEditProfile()
+
+    fun goToSettings()
 }

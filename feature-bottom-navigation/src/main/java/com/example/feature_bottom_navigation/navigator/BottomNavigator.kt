@@ -1,6 +1,8 @@
 package com.example.feature_bottom_navigation.navigator
 
-interface BottomNavigator {
+import com.example.shared_base.Navigator
 
-    fun onClickVideo()
+interface BottomNavigator : Navigator {
+
+    fun goToVideo()
 }

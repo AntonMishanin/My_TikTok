@@ -32,21 +32,16 @@ class RegistrationViewModel
         this.navigator = navigator
     }
 
-    fun onDestroyView() {
-        clear()
-    }
+    fun onDestroyView() = clear()
 
-    fun goToLogin() {
-        navigator.navigateToLogin()
-    }
+    fun goToLogin() = navigator.goToBackFromRegistration()
 
-    fun registerUser(resources: Resources) {
+    fun registerUser(resources: Resources) =
         if (isValidationPassed(userName = user.name)) {
             createNewUser()
         } else {
             showMessageFailValidation(resources.getString(R.string.user_name_validation))
         }
-    }
 
     fun userNameChanged(userName: Editable?) {
         user.name = userName.toString()
@@ -64,7 +59,7 @@ class RegistrationViewModel
 
     private fun isValidationPassed(userName: String): Boolean = userName.split("").size >= 4
 
-    private fun createNewUser() {
+    private fun createNewUser() =
         add(
             insertUserUseCase(user)
                 .subscribeOn(Schedulers.io())
@@ -72,7 +67,7 @@ class RegistrationViewModel
                 .subscribeWith(object : DisposableSingleObserver<Long>() {
                     override fun onSuccess(t: Long) {
                         setTokenUseCase(t)
-                        navigator.navigateToProfile()
+                        navigator.goToProfile()
                     }
 
                     override fun onError(e: Throwable) {
@@ -80,5 +75,4 @@ class RegistrationViewModel
                     }
                 })
         )
-    }
 }

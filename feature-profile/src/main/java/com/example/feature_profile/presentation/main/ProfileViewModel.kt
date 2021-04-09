@@ -9,7 +9,10 @@ import com.example.feature_profile.navigator.ProfileNavigator
 import io.reactivex.android.schedulers.AndroidSchedulers
 import javax.inject.Inject
 
-class ProfileViewModel @Inject constructor(private val getTokenUseCase: GetTokenUseCase, private val getUserByIdUseCase: GetUserByIdUseCase) : BaseViewModel() {
+class ProfileViewModel @Inject constructor(
+    private val getTokenUseCase: GetTokenUseCase,
+    private val getUserByIdUseCase: GetUserByIdUseCase
+) : BaseViewModel() {
 
     private lateinit var navigator: ProfileNavigator
 
@@ -26,15 +29,9 @@ class ProfileViewModel @Inject constructor(private val getTokenUseCase: GetToken
             })
     }
 
-    fun onDestroyView() {
-        clear()
-    }
+    fun onDestroyView() = clear()
 
-    fun navigateToSettings() {
-        navigator.navigateToSettings()
-    }
+    fun navigateToSettings() = navigator.goToSettings()
 
-    fun navigateToEditProfile() {
-        navigator.navigateToEditProfile()
-    }
+    fun navigateToEditProfile() = navigator.goToEditProfile()
 }
