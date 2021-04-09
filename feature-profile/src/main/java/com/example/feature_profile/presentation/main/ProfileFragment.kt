@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import androidx.viewpager2.widget.ViewPager2
 import com.example.feature_profile.databinding.FragmentProfileBinding
 import com.example.feature_profile.navigator.ProfileNavigator
+import com.example.shared_base.NavigatorProvider
 import com.google.android.material.tabs.TabLayout
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -46,7 +47,7 @@ class ProfileFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        val navigator = requireActivity() as ProfileNavigator
+        val navigator = (requireActivity() as NavigatorProvider).provideNavigator() as ProfileNavigator
 
         viewModel.loadUserInformation(navigator)
 

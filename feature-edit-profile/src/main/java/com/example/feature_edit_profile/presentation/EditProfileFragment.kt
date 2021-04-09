@@ -9,9 +9,9 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import com.example.feature_edit_profile.R
 import com.example.feature_edit_profile.databinding.FragmentEditProfileBinding
 import com.example.feature_edit_profile.navigator.EditProfileNavigator
+import com.example.shared_base.NavigatorProvider
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -40,7 +40,7 @@ class EditProfileFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        val navigator = requireActivity() as EditProfileNavigator
+        val navigator = (requireActivity() as NavigatorProvider).provideNavigator() as EditProfileNavigator
 
         viewModel.loadUserInformation(navigator)
         initView()

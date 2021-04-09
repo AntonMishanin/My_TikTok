@@ -1,6 +1,8 @@
 package com.example.feature_edit_profile.navigator
 
-interface EditProfileNavigator {
+import com.example.shared_base.Navigator
 
-    fun onClickBackFromEditProfile()
+interface EditProfileNavigator : Navigator {
+
+    fun goToBackFromEditProfile()
 }

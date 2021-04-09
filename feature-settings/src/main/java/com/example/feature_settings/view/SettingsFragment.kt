@@ -11,6 +11,7 @@ import com.example.shared_base.UiState
 import com.example.feature_settings.databinding.FragmentSettingsBinding
 import com.example.feature_settings.navigator.SettingsNavigator
 import com.example.feature_settings.view_model.SettingsViewModel
+import com.example.shared_base.NavigatorProvider
 import com.example.shared_utils.visible
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -42,7 +43,7 @@ class SettingsFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        val navigator = requireActivity() as SettingsNavigator
+        val navigator = (requireActivity() as NavigatorProvider).provideNavigator() as SettingsNavigator
         viewModel.setNavigator(navigator)
         initView()
         observeViewModel()

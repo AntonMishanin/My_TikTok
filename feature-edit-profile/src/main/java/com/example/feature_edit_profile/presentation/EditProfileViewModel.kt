@@ -60,5 +60,5 @@ class EditProfileViewModel @Inject constructor(
         saveEvent("Saved success")
     }
 
-    fun onCLickBackButton() = navigator.onClickBackFromEditProfile()
+    fun onCLickBackButton() = navigator.goToBackFromEditProfile()
 }

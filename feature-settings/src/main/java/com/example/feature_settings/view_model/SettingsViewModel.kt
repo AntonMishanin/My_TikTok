@@ -69,7 +69,7 @@ class SettingsViewModel @Inject constructor(
 
     private fun logOut() {
         setTokenUseCase(-1L)
-        navigator.onLogOut()
+        navigator.goToLoginFromSettings()
     }
 
     private fun deleteUser() {
@@ -92,5 +92,5 @@ class SettingsViewModel @Inject constructor(
         add(disposable)
     }
 
-    fun navigateBack() = navigator.navigateBack()
+    fun navigateBack() = navigator.goToBackFromSettings()
 }

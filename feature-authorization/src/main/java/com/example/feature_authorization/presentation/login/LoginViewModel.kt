@@ -39,14 +39,14 @@ class LoginViewModel @Inject constructor(
             .subscribe({
                 val token = it.id?.toLong() ?: 0L
                 setTokenUseCase(token)
-                navigator.navigateToProfile()
+                navigator.goToProfile()
             }, {
                 it.printStackTrace()
                 showMessageFailLogin(resources.getString(R.string.fail_login))
             })
     )
 
-    fun goToRegistration() = navigator.navigateToRegistration()
+    fun goToRegistration() = navigator.goToRegistration()
 
     fun enteringUserName(inputUserName: Editable?) {
         userName = inputUserName.toString()

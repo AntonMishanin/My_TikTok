@@ -7,6 +7,7 @@ import androidx.navigation.findNavController
 import androidx.navigation.ui.setupWithNavController
 import com.example.feature_bottom_navigation.R
 import com.example.feature_bottom_navigation.navigator.BottomNavigator
+import com.example.shared_base.NavigatorProvider
 import com.google.android.material.bottomnavigation.BottomNavigationView
 
 class MainFragment : Fragment(R.layout.fragment_main) {
@@ -20,7 +21,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
     }
 
     private fun initNavigation(){
-        val navigator = requireActivity() as BottomNavigator
+        val navigator = (requireActivity() as NavigatorProvider).provideNavigator() as BottomNavigator
 
         bottomNavigationView = requireViewById(requireView(), R.id.bottom_navigation_view)
         navController = requireActivity().findNavController(R.id.bottom_navigation_container)
@@ -28,7 +29,7 @@ class MainFragment : Fragment(R.layout.fragment_main) {
 
         bottomNavigationView.setOnNavigationItemSelectedListener {
             when (it.itemId) {
-                R.id.recordVideoFragment -> navigator.onClickVideo()
+                R.id.recordVideoFragment -> navigator.goToVideo()
                 R.id.profileFragment -> navController.navigate(R.id.profileFragment)
                 R.id.newsFeedFragment -> navController.navigate(R.id.newsFeedFragment)
             }

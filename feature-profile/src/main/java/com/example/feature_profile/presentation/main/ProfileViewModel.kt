@@ -31,7 +31,7 @@ class ProfileViewModel @Inject constructor(
 
     fun onDestroyView() = clear()
 
-    fun navigateToSettings() = navigator.navigateToSettings()
+    fun navigateToSettings() = navigator.goToSettings()
 
-    fun navigateToEditProfile() = navigator.navigateToEditProfile()
+    fun navigateToEditProfile() = navigator.goToEditProfile()
 }

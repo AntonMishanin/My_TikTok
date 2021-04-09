@@ -5,7 +5,6 @@ import android.text.Editable
 import androidx.lifecycle.MutableLiveData
 import com.example.feature_authorization.R
 import com.example.feature_authorization.navigator.AuthorizationNavigator
-import com.example.shared_base.Navigator
 import com.example.shared_base.mvvm.BaseViewModel
 import com.example.shared_domain.entity.UserEntity
 import com.example.shared_domain.usecase.InsertUserUseCase
@@ -35,7 +34,7 @@ class RegistrationViewModel
 
     fun onDestroyView() = clear()
 
-    fun goToLogin() = navigator.navigateToLogin()
+    fun goToLogin() = navigator.goToBackFromRegistration()
 
     fun registerUser(resources: Resources) =
         if (isValidationPassed(userName = user.name)) {
@@ -68,7 +67,7 @@ class RegistrationViewModel
                 .subscribeWith(object : DisposableSingleObserver<Long>() {
                     override fun onSuccess(t: Long) {
                         setTokenUseCase(t)
-                        navigator.navigateToProfile()
+                        navigator.goToProfile()
                     }
 
                     override fun onError(e: Throwable) {

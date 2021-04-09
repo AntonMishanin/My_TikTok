@@ -9,10 +9,9 @@ import androidx.core.widget.addTextChangedListener
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.ViewModelProvider
-import com.example.feature_authorization.R
 import com.example.feature_authorization.databinding.FragmentLoginBinding
 import com.example.feature_authorization.navigator.AuthorizationNavigator
-import com.example.shared_base.Navigator
+import com.example.shared_base.NavigatorProvider
 import com.example.shared_utils.showKeyboard
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
@@ -42,7 +41,7 @@ class LoginFragment : Fragment() {
     override fun onStart() {
         super.onStart()
 
-        val navigator = (requireActivity() as Navigator).provideNavigator() as AuthorizationNavigator
+        val navigator = (requireActivity() as NavigatorProvider).provideNavigator() as AuthorizationNavigator
 
         viewModel.onViewCreated(navigator)
         initView()

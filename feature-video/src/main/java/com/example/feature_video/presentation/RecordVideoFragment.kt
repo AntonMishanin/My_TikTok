@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.feature_video.R
 import com.example.feature_video.databinding.FragmentRecordVideoBinding
 import com.example.feature_video.navigator.VideoNavigator
+import com.example.shared_base.NavigatorProvider
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -38,7 +39,7 @@ class RecordVideoFragment : Fragment(R.layout.fragment_record_video) {
     override fun onStart() {
         super.onStart()
 
-        val navigator = requireActivity() as VideoNavigator
+        val navigator = (requireActivity() as NavigatorProvider).provideNavigator() as VideoNavigator
         viewModel.setNavigator(navigator)
         initView()
     }

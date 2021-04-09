@@ -10,6 +10,7 @@ import androidx.lifecycle.ViewModelProvider
 import com.example.feature_splash.R
 import com.example.feature_splash.RotationGestureDetector
 import com.example.feature_splash.navigation.SplashNavigator
+import com.example.shared_base.NavigatorProvider
 import dagger.android.support.AndroidSupportInjection
 import javax.inject.Inject
 
@@ -34,8 +35,8 @@ class SplashFragment : Fragment(R.layout.fragment_splash),
     override fun onStart() {
         super.onStart()
 
-        val navigator = requireActivity() as SplashNavigator
-        viewModel.loadToken(navigator)
+        val navigator = (requireActivity() as NavigatorProvider).provideNavigator() as SplashNavigator
+        viewModel.checkToken(navigator)
 
         imageView = view?.findViewById(R.id.rotated_image)
 

@@ -39,6 +39,8 @@ android {
 dependencies {
 
     implementation project(':shared-domain')
+    implementation project(':shared-data')
+    implementation project(':shared-base')
 
     //Kotlin
     implementation "org.jetbrains.kotlin:kotlin-stdlib:$kotlin_version"
