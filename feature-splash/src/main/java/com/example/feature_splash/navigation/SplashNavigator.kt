@@ -1,8 +1,11 @@
 package com.example.feature_splash.navigation
 
-interface SplashNavigator {
+import com.example.shared_base.Navigator
 
-    fun navigateToAuthorization()
 
-    fun navigateToProfile()
+interface SplashNavigator : Navigator {
+
+    fun goToLoginSplash()
+
+    fun goToProfile()
 }

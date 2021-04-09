@@ -7,17 +7,20 @@ import com.example.shared_domain.repository.Repository
 import io.reactivex.Completable
 import io.reactivex.Flowable
 import io.reactivex.Single
+import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.observers.DisposableCompletableObserver
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class RepositoryImpl @Inject constructor(
     private val sharedPref: SharedPref,
     private val userDao: UserDao
-): Repository{
+) : Repository {
 
     /*
     Splash
      */
-   override fun getToken(): Long = sharedPref.getToken()
+    override fun getToken(): Long = sharedPref.getToken()
 
     /*
     Authorization
@@ -35,25 +38,9 @@ class RepositoryImpl @Inject constructor(
     override fun updateUser(user: UserEntity): Completable =
         Completable.fromAction { userDao.updateUser(user) }
 
-    //TODO 07.03.2021: finish it
-    override fun deleteUser(user: UserEntity) {
-        /*
-        val f = Completable.fromAction {
-            userDao.deleteUser(user)
-        }
-            .subscribeOn(Schedulers.io())
-            .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
-                (object : DisposableCompletableObserver() {
-                    override fun onComplete() {
-                    }
+    override fun deleteUser(user: UserEntity): Completable =
+        Completable.fromAction { userDao.deleteUser(user) }
 
-                    override fun onError(e: Throwable) {
-                    }
-                })
-            }
-         */
-    }
 
     //TODO 07.03.2021: finish it
     override fun getAllUsers() {
@@ -65,5 +52,6 @@ class RepositoryImpl @Inject constructor(
 
     override fun getUserById(id: Int): Flowable<UserEntity> = userDao.getUserById(id)
 
-    override fun getUserByName(userName: String): Flowable<UserEntity> = userDao.getUserByName(userName)
+    override fun getUserByName(userName: String): Single<UserEntity> =
+        userDao.getUserByName(userName)
 }

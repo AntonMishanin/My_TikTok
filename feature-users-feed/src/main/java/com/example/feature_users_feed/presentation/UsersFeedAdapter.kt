@@ -9,6 +9,7 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.commit
 import androidx.recyclerview.widget.RecyclerView
 import com.example.feature_users_feed.R
+import com.example.feature_users_feed.databinding.ItemNewsFeedBinding
 import com.example.feature_users_feed.domain.entity.ContentEntity
 import com.example.feature_users_feed.items.feature_four.FeatureFourFragment
 import com.example.feature_users_feed.items.feature_one.FeatureOneFragment
@@ -32,8 +33,8 @@ class UsersFeedAdapter(
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): NewsFeedViewHolder {
         val inflater = LayoutInflater.from(parent.context)
-        val view = inflater.inflate(R.layout.item_news_feed, parent, false)
-        return NewsFeedViewHolder(view)
+        val binding = ItemNewsFeedBinding.inflate(inflater, parent, false)
+        return NewsFeedViewHolder(binding)
     }
 
     override fun onBindViewHolder(holder: NewsFeedViewHolder, position: Int) {
@@ -47,7 +48,7 @@ class UsersFeedAdapter(
 
         supportFragmentManager.commit {
             val containerId = View.generateViewId()
-            holder.fragmentContainer?.id = containerId
+            holder.fragmentContainer.id = containerId
             add(containerId, fragment)
         }
     }
@@ -56,12 +57,9 @@ class UsersFeedAdapter(
 
     override fun getItemCount(): Int = content.size
 
-    class NewsFeedViewHolder(view: View) : RecyclerView.ViewHolder(view) {
+    class NewsFeedViewHolder(binding: ItemNewsFeedBinding) : RecyclerView.ViewHolder(binding.root) {
 
-        var fragmentContainer: FragmentContainerView? = null
-
-        init {
-            fragmentContainer = itemView.findViewById(R.id.fragment_container_view)
-        }
+        val fragmentContainer: FragmentContainerView =
+            itemView.findViewById(R.id.fragment_container_view)
     }
 }

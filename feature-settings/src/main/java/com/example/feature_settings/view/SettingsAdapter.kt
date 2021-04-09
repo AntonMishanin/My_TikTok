@@ -15,19 +15,21 @@ class SettingsAdapter(
     private val onItemClickListener: (Int) -> Unit
 ) : RecyclerView.Adapter<RecyclerView.ViewHolder>() {
 
-    private var content: List<SettingsEntityUi> = ArrayList()
+    var content: List<SettingsEntityUi> = ArrayList()
+        set(value) {
+            field = value
+            notifyDataSetChanged()
+        }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
-
         val inflater = LayoutInflater.from(parent.context)
-
         when (viewType) {
             VIEW_TYPE_TITLE -> {
                 val view = inflater.inflate(R.layout.item_title, parent, false)
                 return TitleViewHolder(view)
             }
             VIEW_TYPE_LOG_OUT -> {
-                val view =inflater.inflate(R.layout.item_title, parent, false)
+                val view = inflater.inflate(R.layout.item_title, parent, false)
                 return TitleViewHolder(view)
             }
             VIEW_TYPE_DESCRIPTION -> {
@@ -41,12 +43,9 @@ class SettingsAdapter(
         }
     }
 
-    override fun getItemViewType(position: Int): Int {
-        return content[position].viewType
-    }
+    override fun getItemViewType(position: Int): Int = content[position].viewType
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
-
         when (holder.itemViewType) {
             VIEW_TYPE_TITLE -> {
                 val titleViewHolder = holder as TitleViewHolder
@@ -73,34 +72,21 @@ class SettingsAdapter(
 
     override fun getItemCount(): Int = content.size
 
-    fun setContent(content: List<SettingsEntityUi>) {
-        this.content = content
-        notifyDataSetChanged()
-    }
-
     class TitleViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        private var titleView: TextView? = null
-
-        init {
-            titleView = itemView.findViewById(R.id.item_title)
-        }
+        private val titleView: TextView = itemView.findViewById(R.id.item_title)
 
         fun bind(content: SettingsEntityUi) {
-            titleView?.text = content.text
+            titleView.text = content.text
         }
     }
 
     class DescriptionViewHolder(view: View) : RecyclerView.ViewHolder(view) {
 
-        private var descriptionView: TextView? = null
-
-        init {
-            descriptionView = itemView.findViewById(R.id.item_description)
-        }
+        private var descriptionView: TextView = itemView.findViewById(R.id.item_description)
 
         fun bind(content: SettingsEntityUi) {
-            descriptionView?.text = content.text
+            descriptionView.text = content.text
         }
     }
 }

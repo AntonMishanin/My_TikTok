@@ -4,6 +4,7 @@ import androidx.room.*
 import androidx.room.OnConflictStrategy.REPLACE
 import com.example.shared_domain.entity.UserEntity
 import io.reactivex.Flowable
+import io.reactivex.Single
 
 @Dao
 interface UserDao {
@@ -24,5 +25,5 @@ interface UserDao {
     fun getUserById(id: Int): Flowable<UserEntity>
 
     @Query("SELECT * FROM User WHERE name = :userName")
-    fun getUserByName(userName: String): Flowable<UserEntity>
+    fun getUserByName(userName: String): Single<UserEntity>
 }

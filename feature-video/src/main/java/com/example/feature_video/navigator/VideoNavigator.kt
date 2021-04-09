@@ -1,6 +1,8 @@
 package com.example.feature_video.navigator
 
-interface VideoNavigator {
+import com.example.shared_base.Navigator
 
-    fun navigateBackFromVideo()
+interface VideoNavigator: Navigator {
+
+    fun goToBackFromVideo()
 }

@@ -1,12 +1,16 @@
 package com.example.feature_authorization.presentation.login
 
+import android.content.res.Resources
 import android.text.Editable
 import androidx.lifecycle.MutableLiveData
+import com.example.feature_authorization.R
 import com.example.feature_authorization.navigator.AuthorizationNavigator
 import com.example.shared_base.mvvm.BaseViewModel
 import com.example.shared_domain.usecase.GetUserByNameUseCase
 import com.example.shared_domain.usecase.SetTokenUseCase
+import com.example.shared_utils.SingleLiveEvent
 import io.reactivex.android.schedulers.AndroidSchedulers
+import io.reactivex.schedulers.Schedulers
 import javax.inject.Inject
 
 class LoginViewModel @Inject constructor(
@@ -15,6 +19,7 @@ class LoginViewModel @Inject constructor(
 ) : BaseViewModel() {
 
     val enableLoginButton = MutableLiveData(false)
+    val showMessageFailLogin = SingleLiveEvent<String>()
 
     private lateinit var navigator: AuthorizationNavigator
 
@@ -25,23 +30,23 @@ class LoginViewModel @Inject constructor(
         this.navigator = navigator
     }
 
-    fun onDestroyView() {
-        clear()
-    }
+    fun onDestroyView() = clear()
 
-    fun onClickLogin() {
-        add(getUserByNameUseCase(userName)
+    fun loginUser(resources: Resources) = add(
+        getUserByNameUseCase(userName)
+            .subscribeOn(Schedulers.io())
             .observeOn(AndroidSchedulers.mainThread())
-            .subscribe {
+            .subscribe({
                 val token = it.id?.toLong() ?: 0L
                 setTokenUseCase(token)
-                navigator.navigateToProfile()
+                navigator.goToProfile()
+            }, {
+                it.printStackTrace()
+                showMessageFailLogin(resources.getString(R.string.fail_login))
             })
-    }
+    )
 
-    fun onClickRegistration() {
-        navigator.navigateToRegistration()
-    }
+    fun goToRegistration() = navigator.goToRegistration()
 
     fun enteringUserName(inputUserName: Editable?) {
         userName = inputUserName.toString()
@@ -53,7 +58,7 @@ class LoginViewModel @Inject constructor(
         toggleEnableLoginButton()
     }
 
-    private fun toggleEnableLoginButton(){
+    private fun toggleEnableLoginButton() {
         enableLoginButton.value = userName != "" && password != ""
     }
 }

@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <string name="registration">Registration</string>
-    <string name="log_in">Log in</string>
     <string name="password">Password</string>
     <string name="new_account">New account</string>
     <string name="not_the_first_time_here">Not the first time here?</string>
     <string name="first_time_here">First time here?</string>
+    <string name="user_name_validation">User name size must be more when 3 symbols</string>
+    <string name="fail_login">User not found</string>
+    <string name="name">Name</string>
 </resources>

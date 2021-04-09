@@ -1,8 +1,11 @@
 package com.example.feature_settings.navigator
 
-interface SettingsNavigator {
+import com.example.shared_base.Navigator
 
-    fun navigateBack()
 
-    fun onLogOut()
+interface SettingsNavigator : Navigator {
+
+    fun goToBackFromSettings()
+
+    fun goToLoginFromSettings()
 }
